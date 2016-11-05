@@ -8,7 +8,7 @@ var state_init = function(game) {
         },
 
         create: function() {
-          var colin = game.add.sprite(game.world.centerX, game.world.centerY, 'colin1');
+          var colin = game.add.sprite(0, 0, 'colin1');
           gameState.dancer = colin;
           game.time.events.add(Phaser.Timer.SECOND * 4, endGame, this);
         },
@@ -20,7 +20,7 @@ var state_init = function(game) {
 };
 
 function endGame() {
-  game.add.sprite(game.world.centerX, game.world.centerY,'judgeResponse');
+  game.add.sprite(0,0,'judgeResponse');
   gameState.dancer.kill();
 }
 
