@@ -2,6 +2,10 @@ var startMenu = function(game) {
     return {
         preload: function() {
             game.stage.backgroundColor = "#aaaaaa";
+            this.game.scale.pageAlignHorizontally = true;
+            this.game.scale.pageAlignVertically = true;
+            this.game.scale.refresh();
+
             this.centeredText("Russian Judge Redemption", 20);
             this.loadingText = this.centeredText("Loading", game.world.centerY);
             game.load.image('colin1', 'assets/colin1.jpg');
