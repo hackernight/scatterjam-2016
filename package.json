@@ -1,0 +1,12 @@
+{
+    "name": "",
+    "version": "",
+    "description": "",
+    "dependencies": {},
+    "devDependencies": {
+        "bower": "^1.7.9",
+        "gulp": "^3.9.1",
+        "gulp-util": "^3.0.7",
+        "karma": "^1.3.0"
+    }
+}

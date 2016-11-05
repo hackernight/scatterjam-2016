@@ -1,0 +1,11 @@
+# Don't commit cordova-built things
+platforms/
+
+# Don't commit third-party dependencies
+bower_components/
+node_modules/
+www/js/vendor/
+
+# Don't commit staged assets
+assets/
+www/assets/

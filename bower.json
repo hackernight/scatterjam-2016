@@ -1,0 +1,7 @@
+{
+    "name": "change this default name to your own project name",
+    "private": true,
+    "dependencies": {
+        "phaser": "^2.6.2"
+    }
+}
