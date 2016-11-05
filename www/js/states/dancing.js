@@ -13,8 +13,8 @@ var gameState = {
 
 };
 
-var upKey;
-var downKey;
+var rightKey;
+var leftKey;
 
 var dancing = function(game) {
     return {
@@ -45,16 +45,16 @@ var dancing = function(game) {
             console.log("Current voteMoveWidth: ", gameState.voteMoveWidth);
             repositionScoreBar();
 
-            upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
-            upKey.onDown.add(function() {
+            rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+            rightKey.onDown.add(function() {
                 if (gameState.votedScore < gameState.maxScore) {
                   gameState.votedScore++;
                   repositionScoreBar();
                 }
 
             });
-            downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
-            downKey.onDown.add(function() {
+            leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+            leftKey.onDown.add(function() {
                 if (gameState.votedScore > gameState.minScore) {
                   gameState.votedScore--;
                   repositionScoreBar();
