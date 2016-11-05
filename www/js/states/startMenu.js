@@ -8,10 +8,7 @@ var startMenu = function(game) {
 
             this.centeredText("Russian Judge Redemption", 20);
             this.loadingText = this.centeredText("Loading", game.world.centerY);
-            game.load.image('colin1', 'assets/colin1.jpg');
-            game.load.image('colin2', 'assets/colin-flipped.jpg');
-            game.load.image('colin3', 'assets/colin-upsidedown.jpg');
-            game.load.image('floor', 'assets/flootTile/draftFloor.jpg');
+            game.load.image('floor', 'assets/floorTile/draftFloor.png');
             game.load.image('judgeResponseGood', 'assets/judgeResponseGood.jpg');
             game.load.image('judgeResponseBad', 'assets/judgeResponseBad.jpg');
             game.load.image('feedbackResultGood', 'assets/vaultBoyGood.jpg');
@@ -29,7 +26,7 @@ var startMenu = function(game) {
             }, this);
         },
         centeredText: function(text, y) {
-            var text = game.add.text(game.world.centerX, y, text);
+            text = game.add.text(game.world.centerX, y, text);
             text.anchor.setTo(0.5, 0.5);
             return text;
         },

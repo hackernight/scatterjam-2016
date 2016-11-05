@@ -23,14 +23,17 @@ var dancing = function(game) {
 
         create: function() {
             console.log("Create called in ", game.state.current);
-            //var colin = game.add.sprite(0, 0, 'colin1');
+
+            //draw the background
+            drawBackground();
+
+            //draw the score bar
             gameState.voteBar = game.add.sprite(0, 400, 'voteScoreBar');
             gameState.voteBar.scale.setTo(0.5,0.75);
-            gameState.scoreArrow = game.add.sprite(0, 350, 'meterArrow');
-            gameState.scoreArrow.scale.setTo(0.5,0.75);
-            //gameState.dancer = colin;
-            gameState.votedScore = (gameState.maxScore / 2);
+            gameState.scoreArrow = game.add.sprite(0, 405, 'meterArrow');
+            gameState.scoreArrow.scale.setTo(0.25,0.35);
 
+            gameState.votedScore = (gameState.maxScore / 2);
             gameState.voteMoveWidth = gameState.voteBar.width / gameState.maxScore;
             console.log("Current scorearrowwidt: ", gameState.scoreArrow.width);
             console.log("Current voteMoveWidth: ", gameState.voteMoveWidth);
@@ -81,7 +84,8 @@ var dancing = function(game) {
 };
 
 function drawBackground(){
-//var colin = game.add.sprite(0, 0, 'colin1');
+  floor = game.add.sprite(0, 0, 'floor');
+  sprite = game.add.tileSprite(0, 100, 800, 300, 'floor');
 
 }
 
