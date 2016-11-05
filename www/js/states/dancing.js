@@ -1,6 +1,7 @@
 var gameState = {
   votedScore: null,
-  objectiveScore: null
+  objectiveScore: null,
+  danceMoves:[]
 
 };
 
@@ -21,7 +22,12 @@ var dancing = function(game) {
           var colin = game.add.sprite(0, 0, 'colin1');
           gameState.dancer = colin;
           gameState.votedScore = 0;
-          gameState.objectiveScore = 1;
+
+          gameState.danceMoves[0] = 1;
+          gameState.danceMoves[1] = 1;
+          gameState.danceMoves[2] = 1;
+
+          scoreDance();
           //game.time.events.add(Phaser.Timer.SECOND * 4, endGame, this);
         },
 
@@ -41,5 +47,11 @@ var dancing = function(game) {
     };
 };
 
+function scoreDance(){
+    gameState.objectiveScore = 0;
+    for (var i in gameState.danceMoves) {
+      gameState.objectiveScore = gameState.objectiveScore + gameState.danceMoves[i];
+    }
+}
 
 game.state.add('dancing', dancing);
