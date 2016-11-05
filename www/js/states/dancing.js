@@ -3,7 +3,7 @@ var gameState = {
 
 };
 
-var state_init = function(game) {
+var dancing = function(game) {
     return {
         preload: function() {
               game.load.image('colin1', 'assets/colin1.jpg');
@@ -12,35 +12,28 @@ var state_init = function(game) {
         },
 
         create: function() {
+          console.log("Create called in ", game.state.current);
           var colin = game.add.sprite(0, 0, 'colin1');
           gameState.dancer = colin;
+          gameState.votedScore = 0;
           //game.time.events.add(Phaser.Timer.SECOND * 4, endGame, this);
-
-
         },
 
         update: function() {
           if (game.input.keyboard.isDown(Phaser.Keyboard.UP))
           {
-            votedScore = 1;
-              endGame();
+            gameState.votedScore = 1;
+            game.state.start("judge_Result");
           }
           else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN))
           {
-            votedScore = -1;
-              endGame();
+            gameState.votedScore = -1;
+            game.state.start("judge_Result");
           }
-        }
+        },
+
     };
 };
 
-function endGame() {
-  if (votedScore>0) {
-    game.add.sprite(0,0,'judgeResponseGood');
-  }else {
-    game.add.sprite(0,0,'judgeResponseBad');
-  }
-  gameState.dancer.kill();
-}
 
-game.state.add('init', state_init);
+game.state.add('dancing', dancing);
