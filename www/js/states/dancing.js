@@ -1,9 +1,14 @@
 var gameState = {
   votedScore: null,
   objectiveScore: null,
-  danceMoves:[]
+  currentDance: null,
+  currentDanceIndex: 0,
+  isKeyDown: 0
 
 };
+
+var upKey;
+var downKey;
 
 var dancing = function(game) {
     return {
@@ -23,25 +28,48 @@ var dancing = function(game) {
           gameState.dancer = colin;
           gameState.votedScore = 0;
 
-          gameState.danceMoves[0] = 1;
-          gameState.danceMoves[1] = 1;
-          gameState.danceMoves[2] = 1;
 
-          scoreDance();
-          //game.time.events.add(Phaser.Timer.SECOND * 4, endGame, this);
+          upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
+          upKey.onDown.add(function(){
+                      gameState.votedScore++;
+                      console.log("Current votedScore: ", gameState.votedScore);});
+          downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
+          downKey.onDown.add(function(){
+                      gameState.votedScore--;
+                      console.log("Current votedScore: ", gameState.votedScore);});
+          gameState.currentDance = createDance();
+          var style = { font: "32px Arial", fill: "#ff0044", wordWrap: true, wordWrapWidth: 100, align: "center", backgroundColor: "#ffff00" };
+          this.danceLabel = game.add.text(0, 0, "Dancing!", style);
+          game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
+            gameState.currentDanceIndex++;
+          }, this);
+           scoreDance();
         },
 
         update: function() {
-          if (game.input.keyboard.isDown(Phaser.Keyboard.UP))
-          {
-            gameState.votedScore = 1;
+          if (gameState.currentDanceIndex >= gameState.currentDance.length-1) {
             game.state.start("judge_Result");
           }
-          else if (game.input.keyboard.isDown(Phaser.Keyboard.DOWN))
-          {
-            gameState.votedScore = -1;
-            game.state.start("judge_Result");
-          }
+          this.danceLabel.text = gameState.currentDance[gameState.currentDanceIndex].name;
+          // if (game.input.keyboard.isDown(Phaser.Keyboard.UP) || game.input.keyboard.isDown(Phaser.Keyboard.DOWN))
+          // {
+          //   gameState.isKeyDown = 1;
+          // }
+          //
+          // if (gameState.isKeyDown && game.input.keyboard.isUp(Phaser.Keyboard.UP))
+          // {
+          //   gameState.isKeyDown = 0;
+          //   gameState.votedScore++;
+          //   console.log("Current votedScore: ", gameState.votedScore);
+          // }
+          // else if (gameState.isKeyDown && game.input.keyboard.isUp(Phaser.Keyboard.DOWN))
+          // {
+          //   gameState.isKeyDown = 0;
+          //   gameState.votedScore--;
+          //   console.log("Current votedScore: ", gameState.votedScore);
+          // }
+
+          gameState.currentDance.text = gameState.currentDance.name;
         },
 
     };
@@ -49,9 +77,10 @@ var dancing = function(game) {
 
 function scoreDance(){
     gameState.objectiveScore = 0;
-    for (var i in gameState.danceMoves) {
-      gameState.objectiveScore = gameState.objectiveScore + gameState.danceMoves[i];
+    for (var i in gameState.currentDance) {
+      gameState.objectiveScore = gameState.objectiveScore + gameState.currentDance[i].score();
     }
 }
+
 
 game.state.add('dancing', dancing);
