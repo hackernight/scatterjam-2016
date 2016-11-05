@@ -28,10 +28,10 @@ var dancing = function(game) {
             drawBackground();
 
             //draw the score bar
-            gameState.voteBar = game.add.sprite(0, 400, 'voteScoreBar');
+            gameState.voteBar = game.add.sprite(200, 500, 'voteScoreBar');
             gameState.voteBar.scale.setTo(0.5,0.75);
-            gameState.scoreArrow = game.add.sprite(0, 405, 'meterArrow');
-            gameState.scoreArrow.scale.setTo(0.25,0.35);
+            gameState.scoreArrow = game.add.sprite(200, 505, 'meterArrow');
+            gameState.scoreArrow.scale.setTo(0.25,0.36);
 
             gameState.votedScore = (gameState.maxScore / 2);
             gameState.voteMoveWidth = gameState.voteBar.width / gameState.maxScore;
@@ -85,13 +85,13 @@ var dancing = function(game) {
 
 function drawBackground(){
   floor = game.add.sprite(0, 0, 'floor');
-  sprite = game.add.tileSprite(0, 100, 800, 300, 'floor');
+  sprite = game.add.tileSprite(0, 200, 800, 300, 'floor');
 
 }
 
 function repositionScoreBar(){
   console.log("Current votedScore: ", gameState.votedScore);
-  gameState.scoreArrow.x = (gameState.voteMoveWidth * (gameState.votedScore)) - (gameState.scoreArrow.width / 2);
+  gameState.scoreArrow.x = (gameState.voteMoveWidth * (gameState.votedScore)) - (gameState.scoreArrow.width / 2) + (gameState.voteBar.x);
 }
 
 function scoreDance() {
