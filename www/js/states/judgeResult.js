@@ -5,23 +5,26 @@ var judge_Result = function(game) {
 
         create: function() {
           console.log("Create called in ", game.state.current);
-          if (gameState.votedScore>0) {
+          if (gameState.objectiveScore>0) {
             var judgeResultGood = game.add.sprite(0,0,'judgeResponseGood');
             gameState.judgeGood = judgeResultGood;
           }else {
             var judgeResultBad =game.add.sprite(0,0,'judgeResponseBad');
             gameState.judgeBad = judgeResultBad;
           }
-          //game.time.events.add(Phaser.Timer.SECOND * 4, endGame, this);
+          game.time.events.add(Phaser.Timer.SECOND * 4, giveFeedback, this);
         },
 
         update: function() {
-          if (game.input.keyboard.isDown(Phaser.Keyboard.ENTER))
-          {
-              game.state.start("dancing");
-          }
+
         }
+
     };
 };
+
+        function giveFeedback() {
+          game.state.start("feedback");
+        }
+
 
 game.state.add('judge_Result', judge_Result);

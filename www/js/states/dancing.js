@@ -1,5 +1,6 @@
 var gameState = {
-  votedScore: null
+  votedScore: null,
+  objectiveScore: null
 
 };
 
@@ -9,6 +10,8 @@ var dancing = function(game) {
               game.load.image('colin1', 'assets/colin1.jpg');
               game.load.image('judgeResponseGood', 'assets/judgeResponseGood.jpg');
               game.load.image('judgeResponseBad', 'assets/judgeResponseBad.jpg');
+              game.load.image('feedbackResultGood', 'assets/vaultBoyGood.jpg');
+              game.load.image('feedbackResultBad', 'assets/vaultBoyBad.jpg');
         },
 
         create: function() {
@@ -16,6 +19,7 @@ var dancing = function(game) {
           var colin = game.add.sprite(0, 0, 'colin1');
           gameState.dancer = colin;
           gameState.votedScore = 0;
+          gameState.objectiveScore = 1;
           //game.time.events.add(Phaser.Timer.SECOND * 4, endGame, this);
         },
 
