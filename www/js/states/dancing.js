@@ -12,16 +12,6 @@ var downKey;
 
 var dancing = function(game) {
     return {
-        preload: function() {
-            game.load.image('colin1', 'assets/colin1.jpg');
-            game.load.image('colin2', 'assets/colin-flipped.jpg');
-            game.load.image('colin3', 'assets/colin-upsidedown.jpg');
-            game.load.image('judgeResponseGood', 'assets/judgeResponseGood.jpg');
-            game.load.image('judgeResponseBad', 'assets/judgeResponseBad.jpg');
-            game.load.image('feedbackResultGood', 'assets/vaultBoyGood.jpg');
-            game.load.image('feedbackResultBad', 'assets/vaultBoyBad.jpg');
-        },
-
         create: function() {
             console.log("Create called in ", game.state.current);
             var colin = game.add.sprite(0, 0, 'colin1');
