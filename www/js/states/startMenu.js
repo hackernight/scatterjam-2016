@@ -7,10 +7,13 @@ var startMenu = function(game) {
             game.load.image('colin1', 'assets/colin1.jpg');
             game.load.image('colin2', 'assets/colin-flipped.jpg');
             game.load.image('colin3', 'assets/colin-upsidedown.jpg');
+            game.load.image('floor', 'assets/flootTile/draftFloor.jpg');
             game.load.image('judgeResponseGood', 'assets/judgeResponseGood.jpg');
             game.load.image('judgeResponseBad', 'assets/judgeResponseBad.jpg');
             game.load.image('feedbackResultGood', 'assets/vaultBoyGood.jpg');
             game.load.image('feedbackResultBad', 'assets/vaultBoyBad.jpg');
+            game.load.image('meterArrow', 'assets/meter-arrow.png');
+            game.load.image('voteScoreBar', 'assets/vote-score-bar.png');
             game.load.onLoadComplete.add(function() {
                 this.loadingText.destroy();
                 var startButton = this.centeredText("Start Judging", game.world.centerY);

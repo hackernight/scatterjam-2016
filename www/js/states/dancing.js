@@ -19,25 +19,16 @@ var leftKey;
 var dancing = function(game) {
     return {
         preload: function() {
-            game.load.image('colin1', 'assets/colin1.jpg');
-            game.load.image('colin2', 'assets/colin-flipped.jpg');
-            game.load.image('colin3', 'assets/colin-upsidedown.jpg');
-            game.load.image('judgeResponseGood', 'assets/judgeResponseGood.jpg');
-            game.load.image('judgeResponseBad', 'assets/judgeResponseBad.jpg');
-            game.load.image('feedbackResultGood', 'assets/vaultBoyGood.jpg');
-            game.load.image('feedbackResultBad', 'assets/vaultBoyBad.jpg');
-            game.load.image('meterArrow', 'assets/meter-arrow.png');
-            game.load.image('voteScoreBar', 'assets/vote-score-bar.png');
         },
 
         create: function() {
             console.log("Create called in ", game.state.current);
-            var colin = game.add.sprite(0, 0, 'colin1');
+            //var colin = game.add.sprite(0, 0, 'colin1');
             gameState.voteBar = game.add.sprite(0, 400, 'voteScoreBar');
             gameState.voteBar.scale.setTo(0.5,0.75);
             gameState.scoreArrow = game.add.sprite(0, 350, 'meterArrow');
             gameState.scoreArrow.scale.setTo(0.5,0.75);
-            gameState.dancer = colin;
+            //gameState.dancer = colin;
             gameState.votedScore = (gameState.maxScore / 2);
 
             gameState.voteMoveWidth = gameState.voteBar.width / gameState.maxScore;
@@ -61,6 +52,7 @@ var dancing = function(game) {
                 }
             });
             gameState.currentDance = createDance();
+            gameState.currentDanceIndex=0;
             var style = {
                 font: "32px Arial",
                 fill: "#ff0044",
@@ -87,6 +79,11 @@ var dancing = function(game) {
 
     };
 };
+
+function drawBackground(){
+//var colin = game.add.sprite(0, 0, 'colin1');
+
+}
 
 function repositionScoreBar(){
   console.log("Current votedScore: ", gameState.votedScore);
