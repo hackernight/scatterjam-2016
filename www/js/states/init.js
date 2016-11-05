@@ -1,3 +1,5 @@
+var gameState = {};
+
 var state_init = function(game) {
     return {
         preload: function() {
@@ -6,7 +8,9 @@ var state_init = function(game) {
         },
 
         create: function() {
-          game.add.sprite(0, 0, 'colin1');
+          var colin = game.add.sprite(0, 0, 'colin1');
+          gameState.dancer = colin;
+          game.time.events.add(Phaser.Timer.SECOND * 4, endGame, this);
         },
 
         update: function() {
@@ -14,5 +18,10 @@ var state_init = function(game) {
         }
     };
 };
+
+function endGame() {
+  game.add.sprite(0,0,'judgeResponse');
+  gameState.dancer.kill();
+}
 
 game.state.add('init', state_init);
