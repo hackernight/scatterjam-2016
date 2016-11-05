@@ -29,7 +29,6 @@ var dancing = function(game) {
             game.load.image('meterArrow', 'assets/meter-arrow.png');
             game.load.image('voteScoreBar', 'assets/vote-score-bar.png');
         },
-
         create: function() {
             console.log("Create called in ", game.state.current);
             var colin = game.add.sprite(0, 0, 'colin1');

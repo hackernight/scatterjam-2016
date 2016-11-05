@@ -1,1 +1,1 @@
-game.state.start('dancing');
+game.state.start('startMenu');
