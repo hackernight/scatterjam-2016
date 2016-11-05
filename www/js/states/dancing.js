@@ -3,7 +3,13 @@ var gameState = {
     objectiveScore: null,
     currentDance: null,
     currentDanceIndex: 0,
-    isKeyDown: 0
+    isKeyDown: 0,
+    maxScore: 20,
+    minScore: 0,
+    scoreArrow: null,
+    voteBar: null,
+    voteMoveWidth: null
+
 
 };
 
@@ -20,24 +26,39 @@ var dancing = function(game) {
             game.load.image('judgeResponseBad', 'assets/judgeResponseBad.jpg');
             game.load.image('feedbackResultGood', 'assets/vaultBoyGood.jpg');
             game.load.image('feedbackResultBad', 'assets/vaultBoyBad.jpg');
+            game.load.image('meterArrow', 'assets/meter-arrow.png');
+            game.load.image('voteScoreBar', 'assets/vote-score-bar.png');
         },
 
         create: function() {
             console.log("Create called in ", game.state.current);
             var colin = game.add.sprite(0, 0, 'colin1');
+            gameState.voteBar = game.add.sprite(0, 400, 'voteScoreBar');
+            gameState.voteBar.scale.setTo(0.5,0.75);
+            gameState.scoreArrow = game.add.sprite(0, 350, 'meterArrow');
+            gameState.scoreArrow.scale.setTo(0.5,0.75);
             gameState.dancer = colin;
-            gameState.votedScore = 0;
+            gameState.votedScore = (gameState.maxScore / 2);
 
+            gameState.voteMoveWidth = gameState.voteBar.width / gameState.maxScore;
+            console.log("Current scorearrowwidt: ", gameState.scoreArrow.width);
+            console.log("Current voteMoveWidth: ", gameState.voteMoveWidth);
+            repositionScoreBar();
 
             upKey = game.input.keyboard.addKey(Phaser.Keyboard.UP);
             upKey.onDown.add(function() {
-                gameState.votedScore++;
-                console.log("Current votedScore: ", gameState.votedScore);
+                if (gameState.votedScore < gameState.maxScore) {
+                  gameState.votedScore++;
+                  repositionScoreBar();
+                }
+
             });
             downKey = game.input.keyboard.addKey(Phaser.Keyboard.DOWN);
             downKey.onDown.add(function() {
-                gameState.votedScore--;
-                console.log("Current votedScore: ", gameState.votedScore);
+                if (gameState.votedScore > gameState.minScore) {
+                  gameState.votedScore--;
+                  repositionScoreBar();
+                }
             });
             gameState.currentDance = createDance();
             var style = {
@@ -60,29 +81,17 @@ var dancing = function(game) {
                 game.state.start("judge_Result");
             }
             this.danceLabel.text = gameState.currentDance[gameState.currentDanceIndex].name;
-            // if (game.input.keyboard.isDown(Phaser.Keyboard.UP) || game.input.keyboard.isDown(Phaser.Keyboard.DOWN))
-            // {
-            //   gameState.isKeyDown = 1;
-            // }
-            //
-            // if (gameState.isKeyDown && game.input.keyboard.isUp(Phaser.Keyboard.UP))
-            // {
-            //   gameState.isKeyDown = 0;
-            //   gameState.votedScore++;
-            //   console.log("Current votedScore: ", gameState.votedScore);
-            // }
-            // else if (gameState.isKeyDown && game.input.keyboard.isUp(Phaser.Keyboard.DOWN))
-            // {
-            //   gameState.isKeyDown = 0;
-            //   gameState.votedScore--;
-            //   console.log("Current votedScore: ", gameState.votedScore);
-            // }
 
             gameState.currentDance.text = gameState.currentDance.name;
         },
 
     };
 };
+
+function repositionScoreBar(){
+  console.log("Current votedScore: ", gameState.votedScore);
+  gameState.scoreArrow.x = (gameState.voteMoveWidth * (gameState.votedScore)) - (gameState.scoreArrow.width / 2);
+}
 
 function scoreDance() {
     gameState.objectiveScore = 0;
