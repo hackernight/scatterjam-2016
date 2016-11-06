@@ -24,8 +24,8 @@ var dancing = function(game) {
         create: function() {
             console.log("Create called in ", game.state.current);
 
-            //draw the background
             drawBackground();
+            drawJudges();
 
             //draw the score bar
             gameState.voteBar = game.add.sprite(200, 500, 'voteScoreBar');
@@ -86,7 +86,11 @@ var dancing = function(game) {
 function drawBackground(){
   floor = game.add.sprite(0, 0, 'floor');
   sprite = game.add.tileSprite(0, 200, 800, 300, 'floor');
+}
 
+function drawJudges(){
+  russianJudge = game.add.sprite((800-128), 0, 'russianJudge');
+  draftJudge = game.add.sprite((800-128-128-20), 0, 'draftJudge');
 }
 
 function repositionScoreBar(){
