@@ -58,19 +58,18 @@ var dancing = function(game) {
                 fill: "#ff0044",
                 wordWrap: false,
                 align: "center",
-                backgroundColor: "#ffff00"
             };
-            this.danceLabel = game.add.text(250, 450, "Dancing!", style);
+            this.danceLabel = game.add.text(10, 460, "Dancing!", style);
             game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
                 gameState.currentDanceIndex++;
+                    if (gameState.currentDanceIndex > gameState.currentDance.length - 1) {
+                        game.state.start("judge_Result");
+                    }
             }, this);
             scoreDance();
         },
 
         update: function() {
-            if (gameState.currentDanceIndex >= gameState.currentDance.length - 1) {
-                game.state.start("judge_Result");
-            }
             this.danceLabel.text = gameState.currentDance[gameState.currentDanceIndex].name;
 
             gameState.currentDance.text = gameState.currentDance.name;
@@ -81,26 +80,22 @@ var dancing = function(game) {
 
 function constructDancer() {
     var dancer = {};
-    var dancerBody = game.add.group();
-
-    dancer.torso = makeBodyPart('dancer-torso', 0, 0, dancerBody);
-    dancer.head = makeBodyPart('dancer-head', 0, -80, dancerBody);
-    dancer.leftArm = makeBodyPart('dancer-leftArm', -30, -20, dancerBody);
-    dancer.rightArm = makeBodyPart('dancer-rightArm', 30, -20, dancerBody);
-    dancer.leftHand = makeBodyPart('dancer-leftHand', -30, 30, dancerBody);
-    dancer.rightHand = makeBodyPart('dancer-rightHand', 30, 30, dancerBody);
-    dancer.leftFoot = makeBodyPart('dancer-leftFoot', -20, 140, dancerBody);
-    dancer.rightFoot = makeBodyPart('dancer-rightFoot', 20, 140, dancerBody);
-    dancer.leftLeg = makeBodyPart('dancer-leftLeg', -20, 80, dancerBody);
-    dancer.rightLeg = makeBodyPart('dancer-rightLeg', 20, 80, dancerBody);
-
+    dancer.torso = makeBodyPart('dancer-torso', 0, 0);
+    dancer.head = makeBodyPart('dancer-head', 0, -80);
+    dancer.leftArm = makeBodyPart('dancer-leftArm', -30, -20);
+    dancer.rightArm = makeBodyPart('dancer-rightArm', 30, -20);
+    dancer.leftHand = makeBodyPart('dancer-leftHand', -30, 30);
+    dancer.rightHand = makeBodyPart('dancer-rightHand', 30, 30);
+    dancer.leftFoot = makeBodyPart('dancer-leftFoot', -20, 140);
+    dancer.rightFoot = makeBodyPart('dancer-rightFoot', 20, 140);
+    dancer.leftLeg = makeBodyPart('dancer-leftLeg', -20, 80);
+    dancer.rightLeg = makeBodyPart('dancer-rightLeg', 20, 80);
     return dancer;
 }
 
-function makeBodyPart(spriteName, offsetX, offsetY, group) {
+function makeBodyPart(spriteName, offsetX, offsetY) {
     var sprite = game.add.sprite(200 + offsetX, 200 + offsetY, spriteName);
     sprite.anchor.setTo(0.5, 0.5);
-    group.add(sprite);
     return sprite;
 }
 
@@ -122,7 +117,7 @@ function drawJudges() {
 }
 
 function repositionScoreBar() {
-    console.log("Current votedScore: ", gameState.votedScore);
+    //console.log("Current votedScore: ", gameState.votedScore);
     gameState.scoreArrow.x = (gameState.voteMoveWidth * (gameState.votedScore)) - (gameState.scoreArrow.width / 2) + (gameState.voteBar.x);
 }
 
