@@ -20,6 +20,7 @@ var gameState = {
 
 var rightKey;
 var leftKey;
+var music;
 
 var dancing = function(game) {
     return {
@@ -30,7 +31,8 @@ var dancing = function(game) {
         },
 
         create: function() {
-            console.log("Create called in ", game.state.current);
+            music = game.add.audio('polka');
+            music.play();
 
             drawBackground();
             drawJudges();
