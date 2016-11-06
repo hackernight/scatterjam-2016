@@ -5,10 +5,10 @@ var createDance = function() {
             return 1;
         },
         pose: {
-            leftArm: 90,
+            leftArm: 30,
             rightArm: 0,
             leftLeg: 0,
-            rightLeg: 15,
+            rightLeg: 0,
         }
     }, {
         name: "Head Spin",
@@ -17,8 +17,8 @@ var createDance = function() {
         },
         pose: {
             leftArm: 0,
-            rightArm: 0,
-            leftLeg: 10,
+            rightArm: 30,
+            leftLeg: 0,
             rightLeg: 0,
         }
     }, {
@@ -27,10 +27,10 @@ var createDance = function() {
             return -1;
         },
         pose: {
-            leftArm: 20,
-            rightArm: -30,
-            leftLeg: 0,
-            rightLeg: -150,
+            leftArm: 0,
+            rightArm: 0,
+            leftLeg: 30,
+            rightLeg: 0,
         }
     }, {
         name: "Moonwalk",
@@ -38,10 +38,10 @@ var createDance = function() {
             return 1;
         },
         pose: {
-            leftArm: -30,
+            leftArm: 0,
             rightArm: 0,
-            leftLeg: 40,
-            rightLeg: 0,
+            leftLeg: 0,
+            rightLeg: 30,
         }
     }, {
         name: "Toyota Jump",
@@ -50,7 +50,7 @@ var createDance = function() {
         },
         pose: {
             leftArm: 30,
-            rightArm: 30,
+            rightArm: 0,
             leftLeg: 0,
             rightLeg: 0,
         }
