@@ -24,7 +24,7 @@ var dancing = function(game) {
     return {
         preload: function() {
 
-              game.stage.backgroundColor = "#aaaaaa";
+            game.stage.backgroundColor = "#aaaaaa";
 
         },
 
@@ -100,13 +100,13 @@ function pose() {
         return;
     }
     gameState.dancer.leftArm.angle = currentDance.pose.leftArm;
-    gameState.dancer.leftHand.angle = 180 + currentDance.pose.leftArm;
+    gameState.dancer.leftHand.angle = 180 + gameState.dancer.leftArm.angle;
     gameState.dancer.rightArm.angle = currentDance.pose.rightArm;
-    gameState.dancer.rightHand.angle = 180 + currentDance.pose.rightArm;
+    gameState.dancer.rightHand.angle = 180 + gameState.dancer.rightArm.angle;
     gameState.dancer.leftLeg.angle = currentDance.pose.leftLeg;
-    gameState.dancer.leftFoot.angle = currentDance.pose.leftLeg;
+    gameState.dancer.leftFoot.angle = gameState.dancer.leftLeg.angle;
     gameState.dancer.rightLeg.angle = currentDance.pose.rightLeg;
-    gameState.dancer.rightFoot.angle = currentDance.pose.rightLeg;
+    gameState.dancer.rightFoot.angle = gameState.dancer.rightLeg.angle;
 }
 
 function constructDancer() {
