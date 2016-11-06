@@ -65,7 +65,7 @@ var dancing = function(game) {
             game.add.text(160, 520, "0", style);
             game.add.text(610, 520, "10", style);
 
-            gameState.votedScore = (gameState.maxScore / 2);
+            gameState.votedScore = (gameState.minScore);
             gameState.voteMoveWidth = gameState.voteBar.width / gameState.maxScore;
 
             repositionScoreBar();

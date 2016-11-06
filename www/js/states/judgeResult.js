@@ -41,7 +41,7 @@ function displayJudge() {
     text3.anchor.setTo(0.5, 0.5);
   }
   if (judgeToDisplay==4){
-      text4 = game.add.text(gameState.russianJudge.centerX - 5, 30, addRandomness(gameState.votedScore/2, 3), style);
+      text4 = game.add.text(gameState.russianJudge.centerX - 5, 30, gameState.votedScore/2, style);
       text4.anchor.setTo(0.5, 0.5);
 }
 if (judgeToDisplay==5){

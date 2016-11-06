@@ -44,6 +44,7 @@ var startMenu = function(game) {
             game.load.image('judge2', 'assets/judge/2Judge/normalSprite.png');
             game.load.image('judge3', 'assets/judge/3Judge/normalSprite.png');
             game.load.image('audience', 'assets/audience/audience.png');
+            game.load.image('headAss', 'assets/intro/headAss.png');
 
             game.load.image('dancer-head', 'assets/dancer/mikeDancer/head.png');
             game.load.image('dancer-leftArm', 'assets/dancer/mikeDancer/leftArm.png');
@@ -69,7 +70,10 @@ var startMenu = function(game) {
 
             game.load.onLoadComplete.add(function() {
                 // TODO kill this so you have an actual start menu
-                game.state.start('dancing');
+                //game.state.start('dancing');
+
+                headAss = game.add.sprite(0, 0, 'headAss');
+                headAss.scale.setTo(6, 6);
 
                 this.loadingText.destroy();
                 var startButton = this.centeredText("Start Judging", game.world.centerY);
@@ -84,9 +88,9 @@ var startMenu = function(game) {
                           //align: "center",
                           backgroundColor: "black"
                       };
-
                         backstory = game.add.text(32, 32, '', style);
                         startButton.destroy();
+                        headAss.destroy();
                         displayBackstory();
 
                     });

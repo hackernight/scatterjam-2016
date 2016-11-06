@@ -21,6 +21,7 @@ var feedback = function(game) {
         update: function() {
 
             if (game.input.keyboard.isDown(Phaser.Keyboard.ENTER)) {
+                music.stop();
                 game.state.start("dancing");
             }
         }
