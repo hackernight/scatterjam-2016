@@ -103,6 +103,7 @@ function constructDancer() {
     dancer.rightFoot = makeBodyPart('dancer-rightFoot', 20, 140);
     dancer.leftLeg = makeBodyPart('dancer-leftLeg', -20, 80);
     dancer.rightLeg = makeBodyPart('dancer-rightLeg', 20, 80);
+    return dancer;
 }
 
 function makeBodyPart(spriteName, offsetX, offsetY) {
