@@ -2,7 +2,9 @@ var feedback = function(game) {
     return {
         create: function() {
             //console.log("Create called in ", game.state.current);
-            if (gameState.votedScore == gameState.objectiveScore) {
+            if (gameState.votedScore == gameState.objectiveScore ||
+                gameState.votedScore == gameState.objectiveScore+1 ||
+                gameState.votedScore == gameState.objectiveScore-1) {
                 game.add.sprite(0, 0, 'feedbackResultGood');
             } else {
                 game.add.sprite(0, 0, 'feedbackResultBad');

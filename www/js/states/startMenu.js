@@ -7,12 +7,18 @@ var lineIndex = 0;
 var wordDelay = 120;
 var lineDelay = 400;
 var content = [
-    "Ivan the Terrible, you do not judge like your comrades",
-    "Americanski says you take bribe, are not fit to judge",
+    "Ivan, ",
+    "You are terrible.",
+    "You do not judge like your comrades.",
+    "Americanski says you either take bribe",
+    "  or never learn how to judge.",
     "You disgrace mother Russia!",
     "Interpretive dance serious business!",
-    "We send you back to beginning, learn judging all over again",
-    "Only then can you return for next Olympics"
+    "We send you back to beginning, ",
+    "  learn judging all over again.",
+    "Then MAYBE you return for next Olympics.",
+    "",
+    "-- Minister of Cultural Emergencies"
 ];
 
 var startMenu = function(game) {
