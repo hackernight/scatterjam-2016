@@ -9,7 +9,8 @@ var gameState = {
     minScore: 0,
     scoreArrow: null,
     voteBar: null,
-    voteMoveWidth: null
+    voteMoveWidth: null,
+    dancer: null
 };
 
 var rightKey;
@@ -24,7 +25,7 @@ var dancing = function(game) {
 
             drawBackground();
             drawJudges();
-            constructDancer();
+            gameState.dancer = constructDancer();
 
             //draw the score bar
             gameState.voteBar = game.add.sprite(200, 500, 'voteScoreBar');
@@ -64,8 +65,6 @@ var dancing = function(game) {
             game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
                 gameState.currentDanceIndex++;
 
-                setupDanceMoveTweens(gameState.currentDance.pose, gameState.currentDance[gameState.currentDanceIndex].pose);
-
                 if (gameState.currentDanceIndex > gameState.currentDance.length - 1) {
                     game.state.start("judge_Result");
                 }
@@ -78,15 +77,22 @@ var dancing = function(game) {
             this.danceLabel.text = gameState.currentDance[gameState.currentDanceIndex].name;
 
             gameState.currentDance.text = gameState.currentDance.name;
+            pose();
         },
 
     };
 };
 
-function setupDanceMoveTweens(oldPose, newPose) {
-
+function pose() {
+    var currentDance = gameState.currentDance[gameState.currentDanceIndex];
+    if (!gameState.dancer || !currentDance) {
+        return;
+    }
+    gameState.dancer.leftArm.angle = currentDance.pose.leftArm;
+    gameState.dancer.rightArm.angle = currentDance.pose.rightArm;
+    gameState.dancer.leftLeg.angle = currentDance.pose.leftLeg;
+    gameState.dancer.rightLeg.angle = currentDance.pose.rightLeg;
 }
-
 
 function constructDancer() {
     var dancer = {};
@@ -94,14 +100,19 @@ function constructDancer() {
     dancer.wholeBody = gameState.currentDancer;
     dancer.torso = makeBodyPart('dancer-torso', 0, 0, gameState.currentDancer);
     dancer.head = makeBodyPart('dancer-head', 0, -80, gameState.currentDancer);
-    dancer.leftArm = makeBodyPart('dancer-leftArm', -30, -20, gameState.currentDancer);
-    dancer.rightArm = makeBodyPart('dancer-rightArm', 30, -20, gameState.currentDancer);
-    dancer.leftHand = makeBodyPart('dancer-leftHand', -30, 30, gameState.currentDancer);
-    dancer.rightHand = makeBodyPart('dancer-rightHand', 30, 30, gameState.currentDancer);
-    dancer.leftFoot = makeBodyPart('dancer-leftFoot', -20, 140, gameState.currentDancer);
-    dancer.rightFoot = makeBodyPart('dancer-rightFoot', 20, 140, gameState.currentDancer);
-    dancer.leftLeg = makeBodyPart('dancer-leftLeg', -20, 80, gameState.currentDancer);
-    dancer.rightLeg = makeBodyPart('dancer-rightLeg', 20, 80, gameState.currentDancer);
+    dancer.leftArm = makeBodyPart('dancer-leftArm', -25, -50, gameState.currentDancer);
+    dancer.leftArm.anchor.setTo(0.5, 0);
+    dancer.rightArm = makeBodyPart('dancer-rightArm', 25, -50, gameState.currentDancer);
+    dancer.rightArm.anchor.setTo(0.5, 0);
+
+    // dancer.leftHand = makeBodyPart('dancer-leftHand', -30, 30, gameState.currentDancer);
+    // dancer.rightHand = makeBodyPart('dancer-rightHand', 30, 30, gameState.currentDancer);
+    // dancer.leftFoot = makeBodyPart('dancer-leftFoot', -20, 140, gameState.currentDancer);
+    // dancer.rightFoot = makeBodyPart('dancer-rightFoot', 20, 140, gameState.currentDancer);
+    dancer.leftLeg = makeBodyPart('dancer-leftLeg', 10, 40 , gameState.currentDancer);
+    dancer.leftLeg.anchor.setTo(1, 0);
+    dancer.rightLeg = makeBodyPart('dancer-rightLeg', -10, 40, gameState.currentDancer);
+    dancer.rightLeg.anchor.setTo(0, 0);
     return dancer;
 }
 
