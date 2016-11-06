@@ -121,13 +121,14 @@ function pose() {
     if (!gameState.dancer || !currentDance) {
         return;
     }
-    gameState.dancer.leftArm.angle = currentDance.pose.leftArm;
+    var tweenSpeed = 0.1;
+    gameState.dancer.leftArm.angle += (currentDance.pose.leftArm - gameState.dancer.leftArm.angle) * tweenSpeed;
     gameState.dancer.leftHand.angle = 180 + gameState.dancer.leftArm.angle;
-    gameState.dancer.rightArm.angle = currentDance.pose.rightArm;
+    gameState.dancer.rightArm.angle += (currentDance.pose.rightArm - gameState.dancer.rightArm.angle) * tweenSpeed;
     gameState.dancer.rightHand.angle = 180 + gameState.dancer.rightArm.angle;
-    gameState.dancer.leftLeg.angle = currentDance.pose.leftLeg;
+    gameState.dancer.leftLeg.angle += (currentDance.pose.leftLeg - gameState.dancer.leftLeg.angle) * tweenSpeed;
     gameState.dancer.leftFoot.angle = gameState.dancer.leftLeg.angle;
-    gameState.dancer.rightLeg.angle = currentDance.pose.rightLeg;
+    gameState.dancer.rightLeg.angle += (currentDance.pose.rightLeg - gameState.dancer.rightLeg.angle) * tweenSpeed;;
     gameState.dancer.rightFoot.angle = gameState.dancer.rightLeg.angle;
 
 }
