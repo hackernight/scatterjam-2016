@@ -88,7 +88,8 @@ var dancing = function(game) {
             gameState.currentDance = createDance();
             gameState.currentDanceIndex = 0;
 
-            this.danceLabel = game.add.text(10, 460, "Dancing!", style);
+            this.danceLabel = game.add.text(game.world.centerX, 460, "Dancing!", style);
+            this.danceLabel.anchor.setTo(0.5, 0);
             game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
               emote();
                 gameState.currentDanceIndex++;
