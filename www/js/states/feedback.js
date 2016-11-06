@@ -8,12 +8,24 @@ var feedback = function(game) {
                 music.stop();
                 music = game.add.audio('cheer');
                 music.play();
-                game.add.sprite(0, 0, 'feedbackResultGood');
+
+                audience = game.add.sprite(0, 0, "audience");
+                audience.scale.setTo(3,3);
+
+                fbGood = game.add.sprite(0, 0, 'feedbackResultGood');
+                fbGood.scale.setTo(3,3);
+                fbGood.x = 200;
             } else {
                 music.stop();
                 music = game.add.audio('boo');
                 music.play();
-                game.add.sprite(0, 0, 'feedbackResultBad');
+
+                audience = game.add.sprite(0, 0, "audience");
+                audience.scale.setTo(3,3);
+                
+                fbBad = game.add.sprite(0, 0, 'feedbackResultBad');
+                fbBad.scale.setTo(3,3);
+                fbBad.x = 200;
             }
             //game.time.events.add(Phaser.Timer.SECOND * 4, endGame, this);
         },

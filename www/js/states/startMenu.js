@@ -43,8 +43,8 @@ var startMenu = function(game) {
             game.load.image('floor', 'assets/floorTile/draftFloor.png');
             game.load.image('judgeResponseGood', 'assets/judgeResponseGood.jpg');
             game.load.image('judgeResponseBad', 'assets/judgeResponseBad.jpg');
-            game.load.image('feedbackResultGood', 'assets/vaultBoyGood.jpg');
-            game.load.image('feedbackResultBad', 'assets/vaultBoyBad.jpg');
+            game.load.image('feedbackResultGood', 'assets/feedback/happySprite.png');
+            game.load.image('feedbackResultBad', 'assets/feedback/sadSprite.png');
             game.load.image('meterArrow', 'assets/meter-arrow.png');
             game.load.image('voteScoreBar', 'assets/vote-score-bar.png');
             game.load.image('russianJudge', 'assets/judge/russianJudge/normalSprite.png');

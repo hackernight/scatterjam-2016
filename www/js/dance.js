@@ -2,7 +2,7 @@ var createDance = function() {
     var danceMoves = [{
         name: "",
         score: function() {
-            return 0;
+            return 3;
         },
         pose: {
             leftArm: 0,
@@ -35,7 +35,7 @@ var createDance = function() {
     }, {
         name: "Reeling Starfish",
         score: function() {
-            return -3;
+            return -2;
         },
         pose: {
             leftArm: 135,
@@ -57,7 +57,7 @@ var createDance = function() {
     }, {
         name: "Toyota Jump",
         score: function() {
-            return 0;
+            return 2;
         },
         pose: {
             leftArm: 135,
