@@ -43,6 +43,7 @@ var dancing = function(game) {
                 align: "center",
                 strokeThickness: 5
             };
+
             drawBackground();
             drawJudges();
             gameState.dancer = constructDancer();
@@ -52,6 +53,8 @@ var dancing = function(game) {
             gameState.voteBar.scale.setTo(0.5, 0.75);
             gameState.scoreArrow = game.add.sprite(200, 505, 'meterArrow');
             gameState.scoreArrow.scale.setTo(0.25, 0.36);
+            game.add.text(160, 520, "0", style);
+            game.add.text(610, 520, "10", style);
 
             gameState.votedScore = (gameState.maxScore / 2);
             gameState.voteMoveWidth = gameState.voteBar.width / gameState.maxScore;
