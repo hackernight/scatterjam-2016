@@ -48,12 +48,15 @@ var startMenu = function(game) {
             game.load.image('meterArrow', 'assets/meter-arrow.png');
             game.load.image('voteScoreBar', 'assets/vote-score-bar.png');
             game.load.image('russianJudge', 'assets/judge/russianJudge/normalSprite.png');
-            game.load.image('draftJudge', 'assets/judge/draftJudge/normalSprite.png');
             game.load.image('judge1', 'assets/judge/1Judge/normalSprite.png');
             game.load.image('judge2', 'assets/judge/2Judge/normalSprite.png');
             game.load.image('judge3', 'assets/judge/3Judge/normalSprite.png');
             game.load.image('audience', 'assets/audience/audience.png');
             game.load.image('headAss', 'assets/intro/headAss.png');
+            game.load.image('judge1Score', 'assets/judge/1Judge/scoreSprite.png');
+            game.load.image('judge2Score', 'assets/judge/2Judge/scoreSprite.png');
+            game.load.image('judge3Score', 'assets/judge/3Judge/scoreSprite.png');
+            game.load.image('russianJudgeScore', 'assets/judge/russianJudge/scoreSprite.png');
 
             game.load.image('dancer-head', 'assets/dancer/mikeDancer/head.png');
             game.load.image('dancer-leftArm', 'assets/dancer/mikeDancer/leftArm.png');
