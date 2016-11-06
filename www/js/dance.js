@@ -2,7 +2,7 @@ var createDance = function() {
     var danceMoves = [{
         name: "Jazz Hands",
         score: function() {
-            return 1;
+            return 3;
         },
         pose: {
             leftArm: 150,
@@ -13,7 +13,7 @@ var createDance = function() {
     }, {
         name: "Head Spin",
         score: function() {
-            return 1;
+            return 2;
         },
         pose: {
             leftArm: 0,
@@ -24,7 +24,7 @@ var createDance = function() {
     }, {
         name: "Reeling Starfish",
         score: function() {
-            return -1;
+            return -3;
         },
         pose: {
             leftArm: 135,
@@ -46,7 +46,7 @@ var createDance = function() {
     }, {
         name: "Toyota Jump",
         score: function() {
-            return 1;
+            return 0;
         },
         pose: {
             leftArm: 135,
