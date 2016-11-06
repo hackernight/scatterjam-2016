@@ -9,12 +9,25 @@ var createDance = function() {
         score: function() {
             return 1;
         }
+      }, {
+          name: "The Worm",
+          score: function() {
+              return -1;
+          }
+        }, {
+            name: "Moonwalk",
+            score: function() {
+                return 1;
+            }
     }, {
-        name: "Jazz Hands",
+        name: "Toyota Jump",
         score: function() {
             return 1;
         }
     }];
+    //expansion ideas:
+    //the robot
+    //ballerina pirouette
 
     return danceMoves;
 };

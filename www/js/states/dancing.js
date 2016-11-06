@@ -33,8 +33,7 @@ var dancing = function(game) {
 
             gameState.votedScore = (gameState.maxScore / 2);
             gameState.voteMoveWidth = gameState.voteBar.width / gameState.maxScore;
-            console.log("Current scorearrowwidt: ", gameState.scoreArrow.width);
-            console.log("Current voteMoveWidth: ", gameState.voteMoveWidth);
+
             repositionScoreBar();
 
             rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
@@ -57,12 +56,11 @@ var dancing = function(game) {
             var style = {
                 font: "32px Arial",
                 fill: "#ff0044",
-                wordWrap: true,
-                wordWrapWidth: 100,
+                wordWrap: false,
                 align: "center",
                 backgroundColor: "#ffff00"
             };
-            this.danceLabel = game.add.text(0, 0, "Dancing!", style);
+            this.danceLabel = game.add.text(250, 450, "Dancing!", style);
             game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
                 gameState.currentDanceIndex++;
             }, this);
@@ -81,16 +79,6 @@ var dancing = function(game) {
     };
 };
 
-function drawBackground() {
-    floor = game.add.sprite(0, 0, 'floor');
-    sprite = game.add.tileSprite(0, 200, 800, 300, 'floor');
-}
-
-function drawJudges() {
-    russianJudge = game.add.sprite((800 - 128), 0, 'russianJudge');
-    draftJudge = game.add.sprite((800 - 128 - 128 - 20), 0, 'draftJudge');
-}
-
 function constructDancer() {
     var dancer = {};
     dancer.torso = makeBodyPart('dancer-torso', 0, 0);
@@ -107,9 +95,26 @@ function constructDancer() {
 }
 
 function makeBodyPart(spriteName, offsetX, offsetY) {
-    var sprite = game.add.sprite(200+offsetX, 200+offsetY, spriteName);
+    var sprite = game.add.sprite(200 + offsetX, 200 + offsetY, spriteName);
     sprite.anchor.setTo(0.5, 0.5);
     return sprite;
+}
+
+function drawBackground() {
+    sprite = game.add.tileSprite(0, 200, 800, 300, 'floor');
+}
+
+function drawJudges() {
+    tmpXJudgePadder = 30;
+    tmpXJudgePosition = 0;
+    judge2 = game.add.sprite(tmpXJudgePosition, 0, 'judge2');
+    tmpXJudgePosition = tmpXJudgePosition + judge2.width + tmpXJudgePadder;
+    draftJudge = game.add.sprite(tmpXJudgePosition, 0, 'draftJudge');
+    tmpXJudgePosition = tmpXJudgePosition + draftJudge.width + tmpXJudgePadder;
+    judge1 = game.add.sprite(tmpXJudgePosition, 0, 'judge1');
+    tmpXJudgePosition = tmpXJudgePosition + judge1.width + tmpXJudgePadder * 2;
+    russianJudge = game.add.sprite(tmpXJudgePosition, 0, 'russianJudge');
+
 }
 
 function repositionScoreBar() {

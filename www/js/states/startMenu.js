@@ -17,6 +17,8 @@ var startMenu = function(game) {
             game.load.image('voteScoreBar', 'assets/vote-score-bar.png');
             game.load.image('russianJudge', 'assets/judge/russianJudge/normalSprite.png');
             game.load.image('draftJudge', 'assets/judge/draftJudge/normalSprite.png');
+            game.load.image('judge1', 'assets/judge/1Judge/normalSprite.png');
+            game.load.image('judge2', 'assets/judge/2Judge/normalSprite.png');
 
             game.load.image('dancer-head', 'assets/dancer/draftDancer/head.png');
             game.load.image('dancer-leftArm', 'assets/dancer/draftDancer/leftArm.png');
@@ -28,6 +30,7 @@ var startMenu = function(game) {
             game.load.image('dancer-leftLeg', 'assets/dancer/draftDancer/leftLeg.png');
             game.load.image('dancer-rightLeg', 'assets/dancer/draftDancer/rightLeg.png');
             game.load.image('dancer-torso', 'assets/dancer/draftDancer/torso.png');
+
             game.load.onLoadComplete.add(function() {
                 this.loadingText.destroy();
                 var startButton = this.centeredText("Start Judging", game.world.centerY);
