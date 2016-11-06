@@ -80,22 +80,25 @@ var dancing = function(game) {
 
 function constructDancer() {
     var dancer = {};
-    dancer.torso = makeBodyPart('dancer-torso', 0, 0);
-    dancer.head = makeBodyPart('dancer-head', 0, -80);
-    dancer.leftArm = makeBodyPart('dancer-leftArm', -30, -20);
-    dancer.rightArm = makeBodyPart('dancer-rightArm', 30, -20);
-    dancer.leftHand = makeBodyPart('dancer-leftHand', -30, 30);
-    dancer.rightHand = makeBodyPart('dancer-rightHand', 30, 30);
-    dancer.leftFoot = makeBodyPart('dancer-leftFoot', -20, 140);
-    dancer.rightFoot = makeBodyPart('dancer-rightFoot', 20, 140);
-    dancer.leftLeg = makeBodyPart('dancer-leftLeg', -20, 80);
-    dancer.rightLeg = makeBodyPart('dancer-rightLeg', 20, 80);
+    var dancerBody = game.add.group();
+    dancer.wholeBody = dancerBody;
+    dancer.torso = makeBodyPart('dancer-torso', 0, 0, dancerBody);
+    dancer.head = makeBodyPart('dancer-head', 0, -80, dancerBody);
+    dancer.leftArm = makeBodyPart('dancer-leftArm', -30, -20, dancerBody);
+    dancer.rightArm = makeBodyPart('dancer-rightArm', 30, -20, dancerBody);
+    dancer.leftHand = makeBodyPart('dancer-leftHand', -30, 30, dancerBody);
+    dancer.rightHand = makeBodyPart('dancer-rightHand', 30, 30, dancerBody);
+    dancer.leftFoot = makeBodyPart('dancer-leftFoot', -20, 140, dancerBody);
+    dancer.rightFoot = makeBodyPart('dancer-rightFoot', 20, 140, dancerBody);
+    dancer.leftLeg = makeBodyPart('dancer-leftLeg', -20, 80, dancerBody);
+    dancer.rightLeg = makeBodyPart('dancer-rightLeg', 20, 80, dancerBody);
     return dancer;
 }
 
-function makeBodyPart(spriteName, offsetX, offsetY) {
+function makeBodyPart(spriteName, offsetX, offsetY, group) {
     var sprite = game.add.sprite(200 + offsetX, 200 + offsetY, spriteName);
     sprite.anchor.setTo(0.5, 0.5);
+    group.add(sprite);
     return sprite;
 }
 
