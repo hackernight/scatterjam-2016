@@ -15,7 +15,9 @@ var gameState = {
     judge3: null,
     judge1: null,
     russianJudge: null,
-    emote1: null
+    emote1: null,
+    emote2: null,
+    emote3: null
 };
 
 var rightKey;
@@ -75,14 +77,20 @@ var dancing = function(game) {
             this.danceLabel = game.add.text(10, 460, "Dancing!", style);
             gameState.emote1 = game.add.text(gameState.judge2.centerX - 5, 30, "", style);
             gameState.emote1.anchor.setTo(0.5, 0.5);
+            gameState.emote2 = game.add.text(gameState.judge3.centerX - 5, 30, "", style);
+            gameState.emote2.anchor.setTo(0.5, 0.5);
+            gameState.emote3 = game.add.text(gameState.judge1.centerX - 5, 30, "", style);
+            gameState.emote3.anchor.setTo(0.5, 0.5);
             game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
                 gameState.currentDanceIndex++;
                 if (gameState.currentDanceIndex > gameState.currentDance.length - 1) {
                     gameState.emote1.x = 999;
+                    gameState.emote2.x = 999;
+                    gameState.emote3.x = 999;
                     game.state.start("judge_Result", 0);
                 }
                 //gameState.currentDancer.x = gameState.currentDancer.x + (800/5) - (gameState.currentDancer.width / 2);
-                gameState.emote1.text = "";
+                //gameState.emote1.text = "";
                 game.add.tween(gameState.currentDancer).to({
                     x: ('+160')
                 }, 1000, Phaser.Easing.Linear.None, true);
@@ -106,12 +114,18 @@ function emote(){
   if (gameState.currentDanceIndex <= gameState.currentDance.length - 1) {
   if (gameState.currentDance[gameState.currentDanceIndex].score() > 0) {
     gameState.emote1.text = "Good";
+    gameState.emote2.text = "Good";
+    gameState.emote3.text = "Good";
   }
   if (gameState.currentDance[gameState.currentDanceIndex].score() === 0) {
     gameState.emote1.text = "Hmm";
+    gameState.emote2.text = "Hmm";
+    gameState.emote3.text = "Hmm";
   }
   if (gameState.currentDance[gameState.currentDanceIndex].score() < 0) {
     gameState.emote1.text = "Uh-oh";
+    gameState.emote2.text = "Uh-oh";
+    gameState.emote3.text = "Uh-oh";
   }
 }
 }
