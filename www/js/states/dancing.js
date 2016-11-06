@@ -10,7 +10,11 @@ var gameState = {
     scoreArrow: null,
     voteBar: null,
     voteMoveWidth: null,
-    dancer: null
+    dancer: null,
+    judge2: null,
+    draftJudge: null,
+    judge1: null,
+    russianJudge: null
 };
 
 var rightKey;
@@ -64,11 +68,14 @@ var dancing = function(game) {
             this.danceLabel = game.add.text(10, 460, "Dancing!", style);
             game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
                 gameState.currentDanceIndex++;
-
                 if (gameState.currentDanceIndex > gameState.currentDance.length - 1) {
-                    game.state.start("judge_Result");
+                    game.state.start("judge_Result", 0);
                 }
-                gameState.currentDancer.x = gameState.currentDancer.x + (800 / 5) - (gameState.currentDancer.width / 2);
+                //gameState.currentDancer.x = gameState.currentDancer.x + (800/5) - (gameState.currentDancer.width / 2);
+                game.add.tween(gameState.currentDancer).to({
+                    x: ('+160')
+                }, 1000, Phaser.Easing.Linear.None, true);
+
             }, this);
             scoreDance();
         },
@@ -109,7 +116,7 @@ function constructDancer() {
     // dancer.rightHand = makeBodyPart('dancer-rightHand', 30, 30, gameState.currentDancer);
     // dancer.leftFoot = makeBodyPart('dancer-leftFoot', -20, 140, gameState.currentDancer);
     // dancer.rightFoot = makeBodyPart('dancer-rightFoot', 20, 140, gameState.currentDancer);
-    dancer.leftLeg = makeBodyPart('dancer-leftLeg', 10, 40 , gameState.currentDancer);
+    dancer.leftLeg = makeBodyPart('dancer-leftLeg', 10, 40, gameState.currentDancer);
     dancer.leftLeg.anchor.setTo(1, 0);
     dancer.rightLeg = makeBodyPart('dancer-rightLeg', -10, 40, gameState.currentDancer);
     dancer.rightLeg.anchor.setTo(0, 0);
@@ -117,7 +124,7 @@ function constructDancer() {
 }
 
 function makeBodyPart(spriteName, offsetX, offsetY, group) {
-    var sprite = game.add.sprite(200 + offsetX, 200 + offsetY, spriteName);
+    var sprite = game.add.sprite(100 + offsetX, 200 + offsetY, spriteName);
     sprite.anchor.setTo(0.5, 0.5);
     group.add(sprite);
     return sprite;
@@ -131,13 +138,13 @@ function drawBackground() {
 function drawJudges() {
     tmpXJudgePadder = 30;
     tmpXJudgePosition = 0;
-    judge2 = game.add.sprite(tmpXJudgePosition, 0, 'judge2');
-    tmpXJudgePosition = tmpXJudgePosition + judge2.width + tmpXJudgePadder;
-    draftJudge = game.add.sprite(tmpXJudgePosition, 0, 'draftJudge');
-    tmpXJudgePosition = tmpXJudgePosition + draftJudge.width + tmpXJudgePadder;
-    judge1 = game.add.sprite(tmpXJudgePosition, 0, 'judge1');
-    tmpXJudgePosition = tmpXJudgePosition + judge1.width + tmpXJudgePadder * 2;
-    russianJudge = game.add.sprite(tmpXJudgePosition, 0, 'russianJudge');
+    gameState.judge2 = game.add.sprite(tmpXJudgePosition, 0, 'judge2');
+    tmpXJudgePosition = tmpXJudgePosition + gameState.judge2.width + tmpXJudgePadder;
+    gameState.draftJudge = game.add.sprite(tmpXJudgePosition, 0, 'draftJudge');
+    tmpXJudgePosition = tmpXJudgePosition + gameState.draftJudge.width + tmpXJudgePadder;
+    gameState.judge1 = game.add.sprite(tmpXJudgePosition, 0, 'judge1');
+    tmpXJudgePosition = tmpXJudgePosition + gameState.judge1.width + tmpXJudgePadder * 2;
+    gameState.russianJudge = game.add.sprite(tmpXJudgePosition, 0, 'russianJudge');
 
 }
 
