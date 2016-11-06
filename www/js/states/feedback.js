@@ -22,13 +22,26 @@ var feedback = function(game) {
 
                 audience = game.add.sprite(0, 0, "audience");
                 audience.scale.setTo(3,3);
-                
+
                 fbBad = game.add.sprite(0, 0, 'feedbackResultBad');
                 fbBad.scale.setTo(3,3);
                 fbBad.x = 200;
             }
             //game.time.events.add(Phaser.Timer.SECOND * 4, endGame, this);
-        },
+            var startButton = this.centeredText("Try again?", 500);
+
+            startButton.inputEnabled = true;
+            startButton.events.onInputDown.add(
+                function() {
+                  music.stop();
+                  game.state.start("dancing");
+                });
+
+        },        centeredText: function(ctext, y) {
+                    ctext = game.add.text(game.world.centerX-25, y, ctext);
+                    ctext.anchor.setTo(0.5, 0.5);
+                    return ctext;
+                },
 
         update: function() {
 
