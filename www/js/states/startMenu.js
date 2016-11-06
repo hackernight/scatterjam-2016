@@ -4,6 +4,15 @@ var backstory = null;
 var wordIndex = 0;
 var lineIndex = 0;
 
+
+// "Oppressive Gloom" Kevin MacLeod (incompetech.com)
+// Licensed under Creative Commons: By Attribution 3.0 License
+// http://creativecommons.org/licenses/by/3.0/
+
+// "Meanwhile in Bavaria" Kevin MacLeod (incompetech.com)
+// Licensed under Creative Commons: By Attribution 3.0 License
+// http://creativecommons.org/licenses/by/3.0/
+
 var wordDelay = 120;
 var lineDelay = 400;
 var content = [
@@ -44,6 +53,7 @@ var startMenu = function(game) {
             game.load.image('judge2', 'assets/judge/2Judge/normalSprite.png');
             game.load.image('judge3', 'assets/judge/3Judge/normalSprite.png');
             game.load.image('audience', 'assets/audience/audience.png');
+            game.load.image('headAss', 'assets/intro/headAss.png');
 
             game.load.image('dancer-head', 'assets/dancer/mikeDancer/head.png');
             game.load.image('dancer-leftArm', 'assets/dancer/mikeDancer/leftArm.png');
@@ -60,8 +70,8 @@ var startMenu = function(game) {
             game.load.image('neutralEmote', 'assets/judge/emotes/neutralEmote.png');
             game.load.image('madEmote', 'assets/judge/emotes/madEmote.png');
 
-            game.load.audio('polka', 'assets/audio/LeekSpin.mp3');
-            game.load.audio('dark', 'assets/audio/DarkOminousMusicShort.mp3');
+            game.load.audio('polka', 'assets/audio/BavariaShort.mp3');
+            game.load.audio('dark', 'assets/audio/GloomShort.mp3');
             game.load.audio('boo', 'assets/audio/BooShort.mp3');
             game.load.audio('cheer', 'assets/audio/CheerShort.mp3');
 
@@ -69,7 +79,10 @@ var startMenu = function(game) {
 
             game.load.onLoadComplete.add(function() {
                 // TODO kill this so you have an actual start menu
-                game.state.start('dancing');
+                //game.state.start('dancing');
+
+                headAss = game.add.sprite(0, 0, 'headAss');
+                headAss.scale.setTo(6, 6);
 
                 this.loadingText.destroy();
                 var startButton = this.centeredText("Start Judging", game.world.centerY);
@@ -84,9 +97,9 @@ var startMenu = function(game) {
                           //align: "center",
                           backgroundColor: "black"
                       };
-
                         backstory = game.add.text(32, 32, '', style);
                         startButton.destroy();
+                        headAss.destroy();
                         displayBackstory();
 
                     });
