@@ -56,8 +56,12 @@ var startMenu = function(game) {
             game.load.image('dancer-rightLeg', 'assets/dancer/mikeDancer/rightLeg.png');
             game.load.image('dancer-torso', 'assets/dancer/mikeDancer/torso.png');
 
+            game.load.image('happyEmote', 'assets/judge/emotes/happyEmote.png');
+            game.load.image('neutralEmote', 'assets/judge/emotes/neutralEmote.png');
+            game.load.image('madEmote', 'assets/judge/emotes/madEmote.png');
+
             game.load.audio('polka', 'assets/audio/LeekSpin.mp3');
-            game.load.audio('dark', 'assets/audio/DarkOminousMusicShort.mp3')
+            game.load.audio('dark', 'assets/audio/DarkOminousMusicShort.mp3');
             game.load.audio('boo', 'assets/audio/BooShort.mp3');
             game.load.audio('cheer', 'assets/audio/CheerShort.mp3');
 
