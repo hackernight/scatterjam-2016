@@ -9,7 +9,12 @@ var gameState = {
     minScore: 0,
     scoreArrow: null,
     voteBar: null,
-    voteMoveWidth: null
+    voteMoveWidth: null,
+    judge2: null,
+    draftJudge: null,
+    judge1: null,
+    russianJudge: null
+
 };
 
 var rightKey;
@@ -64,7 +69,7 @@ var dancing = function(game) {
             game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
               gameState.currentDanceIndex++;
                   if (gameState.currentDanceIndex > gameState.currentDance.length - 1) {
-                      game.state.start("judge_Result");
+                      game.state.start("judge_Result", 0);
                   }
                 gameState.currentDancer.x = gameState.currentDancer.x + (800/5) - (gameState.currentDancer.width / 2);
             }, this);
@@ -113,13 +118,13 @@ function drawBackground() {
 function drawJudges() {
     tmpXJudgePadder = 30;
     tmpXJudgePosition = 0;
-    judge2 = game.add.sprite(tmpXJudgePosition, 0, 'judge2');
-    tmpXJudgePosition = tmpXJudgePosition + judge2.width + tmpXJudgePadder;
-    draftJudge = game.add.sprite(tmpXJudgePosition, 0, 'draftJudge');
-    tmpXJudgePosition = tmpXJudgePosition + draftJudge.width + tmpXJudgePadder;
-    judge1 = game.add.sprite(tmpXJudgePosition, 0, 'judge1');
-    tmpXJudgePosition = tmpXJudgePosition + judge1.width + tmpXJudgePadder * 2;
-    russianJudge = game.add.sprite(tmpXJudgePosition, 0, 'russianJudge');
+    gameState.judge2 = game.add.sprite(tmpXJudgePosition, 0, 'judge2');
+    tmpXJudgePosition = tmpXJudgePosition + gameState.judge2.width + tmpXJudgePadder;
+    gameState.draftJudge = game.add.sprite(tmpXJudgePosition, 0, 'draftJudge');
+    tmpXJudgePosition = tmpXJudgePosition + gameState.draftJudge.width + tmpXJudgePadder;
+    gameState.judge1 = game.add.sprite(tmpXJudgePosition, 0, 'judge1');
+    tmpXJudgePosition = tmpXJudgePosition + gameState.judge1.width + tmpXJudgePadder * 2;
+    gameState.russianJudge = game.add.sprite(tmpXJudgePosition, 0, 'russianJudge');
 
 }
 
