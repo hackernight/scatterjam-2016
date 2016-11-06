@@ -13,6 +13,7 @@ var feedback = function(game) {
         },
 
         update: function() {
+            music.stop();
             if (game.input.keyboard.isDown(Phaser.Keyboard.ENTER)) {
                 game.state.start("dancing");
             }
