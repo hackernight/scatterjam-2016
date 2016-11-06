@@ -112,21 +112,44 @@ var dancing = function(game) {
 
 function emote(){
   if (gameState.currentDanceIndex <= gameState.currentDance.length - 1) {
-  if (gameState.currentDance[gameState.currentDanceIndex].score() > 0) {
-    gameState.emote1.text = "Good";
-    gameState.emote2.text = "Good";
-    gameState.emote3.text = "Good";
-  }
-  if (gameState.currentDance[gameState.currentDanceIndex].score() === 0) {
-    gameState.emote1.text = "Hmm";
-    gameState.emote2.text = "Hmm";
-    gameState.emote3.text = "Hmm";
-  }
-  if (gameState.currentDance[gameState.currentDanceIndex].score() < 0) {
-    gameState.emote1.text = "Uh-oh";
-    gameState.emote2.text = "Uh-oh";
-    gameState.emote3.text = "Uh-oh";
-  }
+    switch(gameState.currentDance[gameState.currentDanceIndex].score()) {
+      case 3:
+        gameState.emote1.text = "Good";
+        gameState.emote2.text = "Good";
+        gameState.emote3.text = "Good";
+        break;
+      case 2:
+        gameState.emote1.text = "Good";
+        gameState.emote2.text = "Good";
+        gameState.emote3.text = "Hmm";
+      break;
+      case 1:
+          gameState.emote1.text = "Good";
+          gameState.emote3.text = "Hmm";
+          gameState.emote2.text = "Hmm";
+      break;
+      case 0:
+        gameState.emote1.text = "Hmm";
+        gameState.emote2.text = "Hmm";
+        gameState.emote3.text = "Hmm";
+        break;
+      case -1:
+        gameState.emote1.text = "Uh-oh";
+        gameState.emote2.text = "Hmm";
+        gameState.emote3.text = "Hmm";
+        break;
+      case -2:
+        gameState.emote1.text = "Uh-oh";
+        gameState.emote2.text = "Uh-oh";
+        gameState.emote3.text = "Hmm";
+        break;
+      case -3:
+        gameState.emote1.text = "Uh-oh";
+        gameState.emote2.text = "Uh-oh";
+        gameState.emote3.text = "Uh-oh";
+        break;
+}
+
 }
 }
 
