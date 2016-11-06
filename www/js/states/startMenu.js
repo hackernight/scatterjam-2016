@@ -85,13 +85,15 @@ var startMenu = function(game) {
 
             game.load.onLoadComplete.add(function() {
                 // TODO kill this so you have an actual start menu
-                //game.state.start('dancing');
+                // game.state.start('dancing');
 
                 headAss = game.add.sprite(0, 0, 'headAss');
                 headAss.scale.setTo(6, 6);
 
                 this.loadingText.destroy();
                 var startButton = this.centeredText("Start Judging", game.world.centerY);
+                create();
+
                 startButton.inputEnabled = true;
                 startButton.events.onInputDown.add(
                     function() {
@@ -121,6 +123,27 @@ var startMenu = function(game) {
     };
 };
 
+var rJudges;
+
+function create() {
+
+    rJudges = game.add.group();
+    rJudges.enableBody = true;
+    rJudges.physicsBodyType = Phaser.Physics.ARCADE;
+
+    for (var i = 0; i < 10; i++)
+    {
+        var headAss = rJudges.create(200 + i * 48,-50, 'stamp');
+
+        //This allows your sprite to collide with the world bounds like they were rigid objects
+        headAss.body.collideWorldBounds=true;
+        headAss.body.gravity.x = game.rnd.integerInRange(-50, 50);
+        headAss.body.gravity.y = 100 + Math.random() * 100;
+        headAss.body.bounce.setTo(0.9, 0.9);
+    }
+
+}
+
 function displayBackstory() {
 
   music = game.add.audio('dark');
@@ -139,7 +162,7 @@ function nextLine() {
         stamp = game.add.sprite(0,0,"stamp");
         stamp.x = 625;
         stamp.y = 500;
-        
+
         game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
         music.stop();
         game.state.start('dancing');

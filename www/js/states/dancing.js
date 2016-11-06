@@ -265,6 +265,7 @@ function drawJudges() {
     gameState.judge1 = game.add.sprite(tmpXJudgePosition, 0, 'judge1');
     tmpXJudgePosition = tmpXJudgePosition + gameState.judge1.width + tmpXJudgePadder * 2;
     gameState.russianJudge = game.add.sprite(tmpXJudgePosition, 0, 'russianJudge');
+    stamp = game.add.sprite(tmpXJudgePosition + (gameState.russianJudge.width / 2) - 40, 190, 'stamp');
 
 }
 

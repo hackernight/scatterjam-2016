@@ -56,6 +56,7 @@ function displayJudge() {
       gameState.russianJudge = game.add.sprite(tmpXJudgePosition, 0, 'russianJudgeScore');
       text4 = game.add.text(gameState.russianJudge.centerX - 5, 30, gameState.votedScore/2, style);
       text4.anchor.setTo(0.5, 0.5);
+      stamp = game.add.sprite(tmpXJudgePosition + (gameState.russianJudge.width / 2) - 40, 190, 'stamp');
 }
 if (judgeToDisplay==5){
   game.time.events.add(Phaser.Timer.SECOND * 2, giveFeedback, this);
