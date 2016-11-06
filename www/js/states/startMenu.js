@@ -56,9 +56,11 @@ var startMenu = function(game) {
             game.load.image('dancer-rightLeg', 'assets/dancer/mikeDancer/rightLeg.png');
             game.load.image('dancer-torso', 'assets/dancer/mikeDancer/torso.png');
 
-            //game.load.audio('polka', ['assets/audio/LeekSpin.mp3','assets/audio/LeekSpin.ogg']);
             game.load.audio('polka', 'assets/audio/LeekSpin.mp3');
-            
+            game.load.audio('dark', 'assets/audio/DarkOminousMusicShort.mp3')
+            game.load.audio('boo', 'assets/audio/BooShort.mp3');
+            game.load.audio('cheer', 'assets/audio/CheerShort.mp3');
+
             game.load.onLoadComplete.add(function() {
                 // TODO kill this so you have an actual start menu
                 //game.state.start('dancing');
@@ -95,6 +97,9 @@ var startMenu = function(game) {
 
 
 function displayBackstory() {
+  music = game.add.audio('dark');
+  music.play();
+
   nextLine();
 
 }
@@ -105,6 +110,7 @@ function nextLine() {
     {
         //  We're finished
         game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
+        music.stop();
         game.state.start('dancing');
         }, this);
         return;
