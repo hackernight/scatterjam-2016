@@ -36,6 +36,13 @@ var dancing = function(game) {
             music = game.add.audio('polka');
             music.play();
 
+            var style = {
+                font: "32px Arial",
+                fill: "#ffffff",
+                wordWrap: false,
+                align: "center",
+                strokeThickness: 5
+            };
             drawBackground();
             drawJudges();
             gameState.dancer = constructDancer();
@@ -68,12 +75,7 @@ var dancing = function(game) {
             });
             gameState.currentDance = createDance();
             gameState.currentDanceIndex = 0;
-            var style = {
-                font: "32px Arial",
-                fill: "#ff0044",
-                wordWrap: false,
-                align: "center",
-            };
+
             this.danceLabel = game.add.text(10, 460, "Dancing!", style);
             gameState.emote1 = game.add.sprite(gameState.judge2.centerX - 5, 0, 'neutralEmote');
             //gameState.emote1 = game.add.text(gameState.judge2.centerX - 5, 30, "", style);

@@ -67,7 +67,7 @@ var startMenu = function(game) {
 
             game.load.onLoadComplete.add(function() {
                 // TODO kill this so you have an actual start menu
-                //game.state.start('dancing');
+                game.state.start('dancing');
 
                 this.loadingText.destroy();
                 var startButton = this.centeredText("Start Judging", game.world.centerY);
