@@ -74,6 +74,7 @@ var startMenu = function(game) {
             game.load.image('madEmote', 'assets/judge/emotes/madEmote.png');
 
             game.load.image('storyBackground', 'assets/intro/storyBackground.png');
+            game.load.image('stamp', 'assets/intro/hammerSickle.png');
 
             game.load.audio('polka', 'assets/audio/BavariaShort.mp3');
             game.load.audio('dark', 'assets/audio/GloomShort.mp3');
@@ -108,6 +109,7 @@ var startMenu = function(game) {
                         headAss.destroy();
                         displayBackstory();
 
+
                     });
             }, this);
         },
@@ -134,6 +136,10 @@ function nextLine() {
     if (lineIndex === content.length)
     {
         //  We're finished
+        stamp = game.add.sprite(0,0,"stamp");
+        stamp.x = 625;
+        stamp.y = 500;
+        
         game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
         music.stop();
         game.state.start('dancing');
