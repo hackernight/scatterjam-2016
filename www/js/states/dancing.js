@@ -85,7 +85,7 @@ var dancing = function(game) {
                 gameState.emote1.text = "";
                 game.add.tween(gameState.currentDancer).to({
                     x: ('+160')
-                }, 1000, Phaser.Easing.Exponential.Out, true);
+                }, 1000, pickRandomTween(), true);
                 emote();
 
             }, this);
@@ -114,6 +114,12 @@ function emote() {
             gameState.emote1.text = "Uh-oh";
         }
     }
+}
+
+function pickRandomTween() {
+    var easingFunctions = [Phaser.Easing.Exponential.Out, Phaser.Easing.Exponential.In, Phaser.Easing.Cubic.Out, Phaser.Easing.Cubic.In, Phaser.Easing.Circular.Out, Phaser.Easing.Quartic.Out];
+    var i = (Math.random() * 100) % easingFunctions.length;
+    return easingFunctions[i];
 }
 
 function pose() {
