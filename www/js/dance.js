@@ -22,7 +22,7 @@ var createDance = function() {
             rightLeg: 0,
         }
     }, {
-        name: "Head Spin",
+        name: "Catching Air",
         score: function() {
             return 2;
         },
@@ -55,7 +55,7 @@ var createDance = function() {
             rightLeg: 30,
         }
     }, {
-        name: "Toyota Jump",
+        name: "Big Finish",
         score: function() {
             return 2;
         },

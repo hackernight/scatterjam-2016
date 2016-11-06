@@ -73,6 +73,8 @@ var startMenu = function(game) {
             game.load.image('neutralEmote', 'assets/judge/emotes/neutralEmote.png');
             game.load.image('madEmote', 'assets/judge/emotes/madEmote.png');
 
+            game.load.image('storyBackground', 'assets/intro/storyBackground.png');
+
             game.load.audio('polka', 'assets/audio/BavariaShort.mp3');
             game.load.audio('dark', 'assets/audio/GloomShort.mp3');
             game.load.audio('boo', 'assets/audio/BooShort.mp3');
@@ -95,12 +97,13 @@ var startMenu = function(game) {
                       game.stage.backgroundColor = "black";
                       var style = {
                           font: "32px Arial",
-                          fill: "#19de65",
+                          fill: "black",
                           wordWrap: false,
                           //align: "center",
-                          backgroundColor: "black"
+                          //backgroundColor: "black"
                       };
-                        backstory = game.add.text(32, 32, '', style);
+                        bg = game.add.sprite(0, 0, "storyBackground");
+                        backstory = game.add.text(90, 64, '', style);
                         startButton.destroy();
                         headAss.destroy();
                         displayBackstory();
@@ -116,9 +119,8 @@ var startMenu = function(game) {
     };
 };
 
-
-
 function displayBackstory() {
+
   music = game.add.audio('dark');
   music.play();
   music.volume += 50.0;
