@@ -14,7 +14,8 @@ var gameState = {
     judge2: null,
     judge3: null,
     judge1: null,
-    russianJudge: null
+    russianJudge: null,
+    emote1: null
 };
 
 var rightKey;
@@ -70,15 +71,20 @@ var dancing = function(game) {
                 align: "center",
             };
             this.danceLabel = game.add.text(10, 460, "Dancing!", style);
+            gameState.emote1 = game.add.text(gameState.judge2.centerX - 5, 30, "", style);
+            gameState.emote1.anchor.setTo(0.5, 0.5);
             game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
                 gameState.currentDanceIndex++;
                 if (gameState.currentDanceIndex > gameState.currentDance.length - 1) {
+                    gameState.emote1.x = 999;
                     game.state.start("judge_Result", 0);
                 }
                 //gameState.currentDancer.x = gameState.currentDancer.x + (800/5) - (gameState.currentDancer.width / 2);
+                gameState.emote1.text = "";
                 game.add.tween(gameState.currentDancer).to({
                     x: ('+160')
                 }, 1000, Phaser.Easing.Linear.None, true);
+                emote();
 
             }, this);
             scoreDance();
@@ -94,6 +100,20 @@ var dancing = function(game) {
     };
 };
 
+function emote(){
+  if (gameState.currentDanceIndex <= gameState.currentDance.length - 1) {
+  if (gameState.currentDance[gameState.currentDanceIndex].score() > 0) {
+    gameState.emote1.text = "Good";
+  }
+  if (gameState.currentDance[gameState.currentDanceIndex].score() === 0) {
+    gameState.emote1.text = "Hmm";
+  }
+  if (gameState.currentDance[gameState.currentDanceIndex].score() < 0) {
+    gameState.emote1.text = "Uh-oh";
+  }
+}
+}
+
 function pose() {
     var currentDance = gameState.currentDance[gameState.currentDanceIndex];
     if (!gameState.dancer || !currentDance) {
@@ -107,6 +127,7 @@ function pose() {
     gameState.dancer.leftFoot.angle = currentDance.pose.leftLeg;
     gameState.dancer.rightLeg.angle = currentDance.pose.rightLeg;
     gameState.dancer.rightFoot.angle = currentDance.pose.rightLeg;
+
 }
 
 function constructDancer() {
