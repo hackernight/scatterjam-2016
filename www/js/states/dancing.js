@@ -85,7 +85,7 @@ var dancing = function(game) {
                 gameState.emote1.text = "";
                 game.add.tween(gameState.currentDancer).to({
                     x: ('+160')
-                }, 1000, Phaser.Easing.Linear.None, true);
+                }, 1000, Phaser.Easing.Exponential.Out, true);
                 emote();
 
             }, this);
