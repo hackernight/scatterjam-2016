@@ -36,6 +36,7 @@ var startMenu = function(game) {
             game.load.image('draftJudge', 'assets/judge/draftJudge/normalSprite.png');
             game.load.image('judge1', 'assets/judge/1Judge/normalSprite.png');
             game.load.image('judge2', 'assets/judge/2Judge/normalSprite.png');
+            game.load.image('judge3', 'assets/judge/3Judge/normalSprite.png');
             game.load.image('audience', 'assets/audience/audience.png');
 
             game.load.image('dancer-head', 'assets/dancer/mikeDancer/head.png');
