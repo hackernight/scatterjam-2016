@@ -1,5 +1,6 @@
 var gameState = {
     votedScore: null,
+    emitter: null,
     objectiveScore: null,
     currentDance: null,
     currentDancer: null,
@@ -46,6 +47,14 @@ var dancing = function(game) {
 
             drawBackground();
             drawJudges();
+
+
+            gameState.emitter = game.add.emitter(game.world.centerX, 200, 250);
+            gameState.emitter.makeParticles('particle-star');
+            gameState.emitter.minParticleSpeed.setTo(-300, -300);
+            gameState.emitter.maxParticleSpeed.setTo(300, 300);
+            gameState.emitter.setAlpha(1, 0, 4000, Phaser.Easing.Exponential.Out );
+
             gameState.dancer = constructDancer();
 
             //draw the score bar
@@ -93,9 +102,15 @@ var dancing = function(game) {
                 }
                 //gameState.currentDancer.x = gameState.currentDancer.x + (800/5) - (gameState.currentDancer.width / 2);
                 //gameState.emote1.text = "";
-                game.add.tween(gameState.currentDancer).to({
+                var moveTween = game.add.tween(gameState.currentDancer).to({
                     x: ('+160')
                 }, 1000, pickRandomTween(), true);
+                moveTween.onComplete.add(function() {
+                  if (gameState.currentDance[gameState.currentDanceIndex - 1].score() > 1) {
+                    gameState.emitter.x = gameState.currentDancer.x - 20;
+                    gameState.emitter.explode(4000, 10);
+                  }
+                });
 
             }, this);
             scoreDance();
