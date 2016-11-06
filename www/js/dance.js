@@ -5,10 +5,10 @@ var createDance = function() {
             return 1;
         },
         pose: {
-            leftArm: 90,
-            rightArm: 90,
-            leftLeg: 90,
-            leftArm: 90,
+            leftArm: 30,
+            rightArm: 0,
+            leftLeg: 0,
+            rightLeg: 0,
         }
     }, {
         name: "Head Spin",
@@ -16,10 +16,10 @@ var createDance = function() {
             return 1;
         },
         pose: {
-            leftArm: 90,
-            rightArm: 90,
-            leftLeg: 90,
-            leftArm: 90,
+            leftArm: 0,
+            rightArm: 30,
+            leftLeg: 0,
+            rightLeg: 0,
         }
     }, {
         name: "The Worm",
@@ -27,10 +27,10 @@ var createDance = function() {
             return -1;
         },
         pose: {
-            leftArm: 90,
-            rightArm: 90,
-            leftLeg: 90,
-            leftArm: 90,
+            leftArm: 0,
+            rightArm: 0,
+            leftLeg: 30,
+            rightLeg: 0,
         }
     }, {
         name: "Moonwalk",
@@ -38,10 +38,10 @@ var createDance = function() {
             return 1;
         },
         pose: {
-            leftArm: 90,
-            rightArm: 90,
-            leftLeg: 90,
-            leftArm: 90,
+            leftArm: 0,
+            rightArm: 0,
+            leftLeg: 0,
+            rightLeg: 30,
         }
     }, {
         name: "Toyota Jump",
@@ -49,10 +49,10 @@ var createDance = function() {
             return 1;
         },
         pose: {
-            leftArm: 90,
-            rightArm: 90,
-            leftLeg: 90,
-            leftArm: 90,
+            leftArm: 30,
+            rightArm: 0,
+            leftLeg: 0,
+            rightLeg: 0,
         }
     }];
     //expansion ideas:
