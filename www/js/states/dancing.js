@@ -62,11 +62,14 @@ var dancing = function(game) {
             };
             this.danceLabel = game.add.text(10, 460, "Dancing!", style);
             game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
-              gameState.currentDanceIndex++;
-                  if (gameState.currentDanceIndex > gameState.currentDance.length - 1) {
-                      game.state.start("judge_Result");
-                  }
-                gameState.currentDancer.x = gameState.currentDancer.x + (800/5) - (gameState.currentDancer.width / 2);
+                gameState.currentDanceIndex++;
+
+                setupDanceMoveTweens(gameState.currentDance.pose, gameState.currentDance[gameState.currentDanceIndex].pose);
+
+                if (gameState.currentDanceIndex > gameState.currentDance.length - 1) {
+                    game.state.start("judge_Result");
+                }
+                gameState.currentDancer.x = gameState.currentDancer.x + (800 / 5) - (gameState.currentDancer.width / 2);
             }, this);
             scoreDance();
         },
@@ -79,6 +82,10 @@ var dancing = function(game) {
 
     };
 };
+
+function setupDanceMoveTweens(oldPose, newPose) {
+
+}
 
 
 function constructDancer() {
