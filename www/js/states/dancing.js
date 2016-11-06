@@ -211,7 +211,7 @@ function constructDancer() {
 }
 
 function makeBodyPart(spriteName, offsetX, offsetY, group) {
-    var sprite = game.add.sprite(100 + offsetX, 200 + offsetY, spriteName);
+    var sprite = game.add.sprite(-45 + offsetX, 200 + offsetY, spriteName);
     sprite.anchor.setTo(0.5, 0.5);
     group.add(sprite);
     return sprite;

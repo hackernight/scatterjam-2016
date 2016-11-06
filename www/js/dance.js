@@ -1,5 +1,16 @@
 var createDance = function() {
     var danceMoves = [{
+        name: "",
+        score: function() {
+            return 0;
+        },
+        pose: {
+            leftArm: 0,
+            rightArm: 0,
+            leftLeg: 0,
+            rightLeg: 0,
+        }
+    }, {
         name: "Jazz Hands",
         score: function() {
             return 3;
@@ -54,7 +65,18 @@ var createDance = function() {
             leftLeg: 0,
             rightLeg: 0,
         }
-    }];
+    }, {
+        name: "",
+        score: function() {
+            return 0;
+        },
+        pose: {
+            leftArm: 0,
+            rightArm: 0,
+            leftLeg: 0,
+            rightLeg: 0,
+        }
+    }, ];
     //expansion ideas:
     //the robot
     //ballerina pirouette
