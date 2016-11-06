@@ -5,8 +5,8 @@ var createDance = function() {
             return 1;
         },
         pose: {
-            leftArm: 30,
-            rightArm: 0,
+            leftArm: 150,
+            rightArm: -150,
             leftLeg: 0,
             rightLeg: 0,
         }
@@ -17,20 +17,20 @@ var createDance = function() {
         },
         pose: {
             leftArm: 0,
-            rightArm: 30,
-            leftLeg: 0,
-            rightLeg: 0,
+            rightArm: 0,
+            leftLeg: 90,
+            rightLeg: -90,
         }
     }, {
-        name: "The Worm",
+        name: "Reeling Starfish",
         score: function() {
             return -1;
         },
         pose: {
-            leftArm: 0,
-            rightArm: 0,
-            leftLeg: 30,
-            rightLeg: 0,
+            leftArm: 135,
+            rightArm: -135,
+            leftLeg: 45,
+            rightLeg: -45,
         }
     }, {
         name: "Moonwalk",
@@ -40,7 +40,7 @@ var createDance = function() {
         pose: {
             leftArm: 0,
             rightArm: 0,
-            leftLeg: 0,
+            leftLeg: -30,
             rightLeg: 30,
         }
     }, {
@@ -49,8 +49,8 @@ var createDance = function() {
             return 1;
         },
         pose: {
-            leftArm: 30,
-            rightArm: 0,
+            leftArm: 135,
+            rightArm: -135,
             leftLeg: 0,
             rightLeg: 0,
         }
