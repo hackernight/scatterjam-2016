@@ -103,7 +103,7 @@ var startMenu = function(game) {
 function displayBackstory() {
   music = game.add.audio('dark');
   music.play();
-  music.volume += 1.0;
+  music.volume += 50.0;
 
   nextLine();
 
