@@ -17,6 +17,8 @@ var startMenu = function(game) {
             game.load.image('voteScoreBar', 'assets/vote-score-bar.png');
             game.load.image('russianJudge', 'assets/judge/russianJudge/normalSprite.png');
             game.load.image('draftJudge', 'assets/judge/draftJudge/normalSprite.png');
+            game.load.image('judge1', 'assets/judge/1Judge/normalSprite.png');
+            game.load.image('judge2', 'assets/judge/2Judge/normalSprite.png');
             game.load.onLoadComplete.add(function() {
                 this.loadingText.destroy();
                 var startButton = this.centeredText("Start Judging", game.world.centerY);

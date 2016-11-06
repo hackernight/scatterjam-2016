@@ -89,8 +89,16 @@ function drawBackground(){
 }
 
 function drawJudges(){
-  russianJudge = game.add.sprite((800-128), 0, 'russianJudge');
-  draftJudge = game.add.sprite((800-128-128-20), 0, 'draftJudge');
+  tmpXJudgePadder = 30;
+  tmpXJudgePosition = 0;
+  judge2 = game.add.sprite(tmpXJudgePosition, 0, 'judge2');
+  tmpXJudgePosition = tmpXJudgePosition + judge2.width + tmpXJudgePadder;
+  draftJudge = game.add.sprite(tmpXJudgePosition, 0, 'draftJudge');
+  tmpXJudgePosition = tmpXJudgePosition + draftJudge.width + tmpXJudgePadder;
+  judge1 = game.add.sprite(tmpXJudgePosition, 0, 'judge1');
+  tmpXJudgePosition = tmpXJudgePosition + judge1.width + tmpXJudgePadder * 2;
+  russianJudge = game.add.sprite(tmpXJudgePosition, 0, 'russianJudge');
+
 }
 
 function repositionScoreBar(){
