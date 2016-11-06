@@ -1,7 +1,7 @@
 var feedback = function(game) {
     return {
         create: function() {
-            console.log("Create called in ", game.state.current);
+            //console.log("Create called in ", game.state.current);
             if (gameState.votedScore == gameState.objectiveScore) {
                 game.add.sprite(0, 0, 'feedbackResultGood');
             } else {

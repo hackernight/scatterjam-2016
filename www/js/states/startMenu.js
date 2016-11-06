@@ -79,9 +79,6 @@ var startMenu = function(game) {
             ctext.anchor.setTo(0.5, 0.5);
             return ctext;
         },
-        // create: function() {
-        //   text = game.add.text(32, 32, '', { font: "15px Arial", fill: "#19de65" });
-        // },
     };
 };
 
