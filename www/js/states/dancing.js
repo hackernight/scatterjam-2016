@@ -22,7 +22,11 @@ var leftKey;
 
 var dancing = function(game) {
     return {
-        preload: function() {},
+        preload: function() {
+
+              game.stage.backgroundColor = "#aaaaaa";
+
+        },
 
         create: function() {
             console.log("Create called in ", game.state.current);
