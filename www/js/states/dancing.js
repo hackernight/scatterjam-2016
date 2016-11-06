@@ -113,6 +113,7 @@ function makeBodyPart(spriteName, offsetX, offsetY, group) {
 }
 
 function drawBackground() {
+    audience = game.add.sprite(0, 0, "audience");
     sprite = game.add.tileSprite(0, 200, 800, 300, 'floor');
 }
 
