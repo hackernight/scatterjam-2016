@@ -2,7 +2,7 @@ var createDance = function() {
     var danceMoves = [{
         name: "",
         score: function() {
-            return 3;
+            return 0;
         },
         pose: {
             leftArm: 0,

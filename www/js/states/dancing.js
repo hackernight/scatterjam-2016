@@ -91,14 +91,10 @@ var dancing = function(game) {
             this.danceLabel = game.add.text(game.world.centerX, 460, "Dancing!", style);
             this.danceLabel.anchor.setTo(0.5, 0);
             game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
-              emote();
+              killEmotes();
                 gameState.currentDanceIndex++;
                 if (gameState.currentDanceIndex > gameState.currentDance.length - 1) {
-                  if (!!gameState.emote1){
-                    gameState.emote1.kill();
-                    gameState.emote2.kill();
-                    gameState.emote3.kill();
-                  }
+                    killEmotes();
                     game.state.start("judge_Result", 0);
                 }
                 //gameState.currentDancer.x = gameState.currentDancer.x + (800/5) - (gameState.currentDancer.width / 2);
@@ -114,6 +110,9 @@ var dancing = function(game) {
                 });
 
             }, this);
+            game.time.events.loop(Phaser.Timer.SECOND * 1, function() {
+                    emote();
+                        }, this);
             scoreDance();
         },
 
@@ -127,13 +126,17 @@ var dancing = function(game) {
     };
 };
 
+function killEmotes(){
+  if (!!gameState.emote1){
+    gameState.emote1.kill();
+    gameState.emote2.kill();
+    gameState.emote3.kill();
+  }
+}
+
 function emote(){
-  if (gameState.currentDanceIndex <= gameState.currentDance.length - 1) {
-    if (!!gameState.emote1){
-      gameState.emote1.kill();
-      gameState.emote2.kill();
-      gameState.emote3.kill();
-    }
+  if (!! gameState.currentDanceIndex && gameState.currentDanceIndex <= gameState.currentDance.length - 1) {
+    killEmotes();
     var emoteOffset = 45;
 
     switch(gameState.currentDance[gameState.currentDanceIndex].score()) {
@@ -152,11 +155,11 @@ function emote(){
       gameState.emote2 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
       gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
       break;
-      case 0:
-      gameState.emote1 = drawEmote('neutralEmote', gameState.judge1.centerX - emoteOffset);
-      gameState.emote2 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
-      gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
-        break;
+      // case 0:
+      // gameState.emote1 = drawEmote('neutralEmote', gameState.judge1.centerX - emoteOffset);
+      // gameState.emote2 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
+      // gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
+      //   break;
       case -1:
       gameState.emote1 = drawEmote('madEmote', gameState.judge1.centerX - emoteOffset);
       gameState.emote2 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
