@@ -71,7 +71,8 @@ var dancing = function(game) {
                   if (gameState.currentDanceIndex > gameState.currentDance.length - 1) {
                       game.state.start("judge_Result", 0);
                   }
-                gameState.currentDancer.x = gameState.currentDancer.x + (800/5) - (gameState.currentDancer.width / 2);
+                //gameState.currentDancer.x = gameState.currentDancer.x + (800/5) - (gameState.currentDancer.width / 2);
+                game.add.tween(gameState.currentDancer).to( { x: ('+160') }, 1000, Phaser.Easing.Linear.None, true);
 
             }, this);
             scoreDance();
@@ -109,7 +110,7 @@ function constructDancer() {
 }
 
 function makeBodyPart(spriteName, offsetX, offsetY, group) {
-    var sprite = game.add.sprite(200 + offsetX, 200 + offsetY, spriteName);
+    var sprite = game.add.sprite(100 + offsetX, 200 + offsetY, spriteName);
     sprite.anchor.setTo(0.5, 0.5);
     group.add(sprite);
     return sprite;
