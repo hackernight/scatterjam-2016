@@ -65,6 +65,8 @@ var startMenu = function(game) {
             game.load.audio('boo', 'assets/audio/BooShort.mp3');
             game.load.audio('cheer', 'assets/audio/CheerShort.mp3');
 
+            game.load.image('particle-star', 'assets/particle-star.png');
+
             game.load.onLoadComplete.add(function() {
                 // TODO kill this so you have an actual start menu
                 game.state.start('dancing');
