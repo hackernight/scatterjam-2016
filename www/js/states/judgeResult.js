@@ -12,7 +12,7 @@ var judge_Result = function(game) {
 
             text = game.add.text(gameState.judge2.centerX - 5, 30, addRandomness(gameState.objectiveScore/2, 9), style);
             text.anchor.setTo(0.5, 0.5);
-            text2 = game.add.text(gameState.draftJudge.centerX - 5, 30, addRandomness(gameState.objectiveScore/2, 9), style);
+            text2 = game.add.text(gameState.judge3.centerX - 5, 30, addRandomness(gameState.objectiveScore/2, 9), style);
             text2.anchor.setTo(0.5, 0.5);
             text3 = game.add.text(gameState.judge1.centerX - 5, 30, addRandomness(gameState.objectiveScore/2, 3), style);
             text3.anchor.setTo(0.5, 0.5);
