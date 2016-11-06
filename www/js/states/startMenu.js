@@ -32,6 +32,9 @@ var startMenu = function(game) {
             game.load.image('dancer-torso', 'assets/dancer/draftDancer/torso.png');
 
             game.load.onLoadComplete.add(function() {
+                // TODO kill this so you have an actual start menu
+                game.state.start('dancing');
+
                 this.loadingText.destroy();
                 var startButton = this.centeredText("Start Judging", game.world.centerY);
                 startButton.inputEnabled = true;
