@@ -34,14 +34,14 @@ function displayJudge() {
       gameState.judge2.destroy();
       gameState.judge2 = game.add.sprite(tmpXJudgePosition, 0, 'judge2Score');
       tmpXJudgePosition = tmpXJudgePosition + gameState.judge2.width + tmpXJudgePadder;
-      text = game.add.text(gameState.judge2.centerX - 5, 30, addRandomness(gameState.objectiveScore/2, 9), style);
+      text = game.add.text(gameState.judge2.centerX - 5, 30, addRandomness(gameState.objectiveScore/2, 4), style);
       text.anchor.setTo(0.5, 0.5);
   }
   if (judgeToDisplay==2){
       gameState.judge3.destroy();
       gameState.judge3 = game.add.sprite(tmpXJudgePosition, 0, 'judge3Score');
       tmpXJudgePosition = tmpXJudgePosition + gameState.judge3.width + tmpXJudgePadder;
-      text2 = game.add.text(gameState.judge3.centerX - 5, 30, addRandomness(gameState.objectiveScore/2, 9), style);
+      text2 = game.add.text(gameState.judge3.centerX - 5, 30, addRandomness(gameState.objectiveScore/2, 5), style);
       text2.anchor.setTo(0.5, 0.5);
   }
   if (judgeToDisplay==3){

@@ -113,7 +113,15 @@ var dancing = function(game) {
                 });
 
             }, this);
-            game.time.events.loop(Phaser.Timer.SECOND * 1, function() {
+
+            var emoteDuration = Phaser.Timer.SECOND * 1;
+             if (gameState.successRounds> 2){
+               emoteDuration = 500;
+             }
+             if (gameState.successRounds> 4){
+              emoteDuration = 250;
+            }
+            game.time.events.loop(emoteDuration, function() {
                     emote();
                         }, this);
             scoreDance();
