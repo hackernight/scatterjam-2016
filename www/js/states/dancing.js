@@ -18,7 +18,8 @@ var gameState = {
     russianJudge: null,
     emote1: null,
     emote2: null,
-    emote3: null
+    emote3: null,
+    currentEmotedDanceIndex: null
 };
 
 var rightKey;
@@ -132,6 +133,8 @@ function killEmotes(){
     gameState.emote2.kill();
     gameState.emote3.kill();
   }
+
+
 }
 
 function emote(){
@@ -139,6 +142,8 @@ function emote(){
     killEmotes();
     var emoteOffset = 45;
 
+    if (!gameState.currentEmotedDanceIndex || gameState.currentEmotedDanceIndex < gameState.currentDanceIndex) {
+    gameState.currentEmotedDanceIndex = gameState.currentDanceIndex;
     switch(gameState.currentDance[gameState.currentDanceIndex].score()) {
       case 3:
         gameState.emote1 = drawEmote('happyEmote', gameState.judge1.centerX - emoteOffset);
@@ -146,14 +151,10 @@ function emote(){
         gameState.emote3 = drawEmote('happyEmote', gameState.judge3.centerX - emoteOffset);
         break;
       case 2:
-      gameState.emote1 = drawEmote('happyEmote', gameState.judge1.centerX - emoteOffset);
-      gameState.emote2 = drawEmote('happyEmote', gameState.judge2.centerX - emoteOffset);
-      gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
+      twoRandomJudgesEmote('happyEmote', emoteOffset);
       break;
       case 1:
-      gameState.emote1 = drawEmote('happyEmote', gameState.judge1.centerX - emoteOffset);
-      gameState.emote2 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
-      gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
+      oneRandomJudgeEmotes('happyEmote', emoteOffset);
       break;
       // case 0:
       // gameState.emote1 = drawEmote('neutralEmote', gameState.judge1.centerX - emoteOffset);
@@ -161,14 +162,10 @@ function emote(){
       // gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
       //   break;
       case -1:
-      gameState.emote1 = drawEmote('madEmote', gameState.judge1.centerX - emoteOffset);
-      gameState.emote2 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
-      gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
+      oneRandomJudgeEmotes('madEmote', emoteOffset);
         break;
       case -2:
-      gameState.emote1 = drawEmote('madEmote', gameState.judge1.centerX - emoteOffset);
-      gameState.emote2 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
-      gameState.emote3 = drawEmote('madEmote', gameState.judge3.centerX - emoteOffset);
+      twoRandomJudgesEmote('madEmote', emoteOffset);
         break;
       case -3:
       gameState.emote1 = drawEmote('madEmote', gameState.judge1.centerX - emoteOffset);
@@ -176,8 +173,51 @@ function emote(){
       gameState.emote3 = drawEmote('madEmote', gameState.judge3.centerX - emoteOffset);
         break;
 }
+}
 
 }
+}
+
+function oneRandomJudgeEmotes(emote, emoteOffset) {
+  var judgeToEmote = (game.rnd.integerInRange(1, 3));
+      switch(judgeToEmote) {
+        case 1:
+        gameState.emote1 = drawEmote(emote, gameState.judge1.centerX - emoteOffset);
+        gameState.emote2 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
+        gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
+        break;
+        case 2:
+        gameState.emote1 = drawEmote(emote, gameState.judge2.centerX - emoteOffset);
+        gameState.emote2 = drawEmote('neutralEmote', gameState.judge1.centerX - emoteOffset);
+        gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
+        break;
+        case 3:
+        gameState.emote1 = drawEmote(emote, gameState.judge3.centerX - emoteOffset);
+        gameState.emote2 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
+        gameState.emote3 = drawEmote('neutralEmote', gameState.judge1.centerX - emoteOffset);
+        break;
+      }
+}
+
+function twoRandomJudgesEmote(emote, emoteOffset) {
+  var judgeToNotEmote = (game.rnd.integerInRange(1, 3));
+      switch(judgeToNotEmote) {
+        case 1:
+        gameState.emote1 = drawEmote(emote, gameState.judge2.centerX - emoteOffset);
+        gameState.emote2 = drawEmote(emote, gameState.judge3.centerX - emoteOffset);
+        gameState.emote3 = drawEmote('neutralEmote', gameState.judge1.centerX - emoteOffset);
+        break;
+        case 2:
+        gameState.emote1 = drawEmote(emote, gameState.judge1.centerX - emoteOffset);
+        gameState.emote2 = drawEmote(emote, gameState.judge3.centerX - emoteOffset);
+        gameState.emote3 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
+        break;
+        case 3:
+        gameState.emote1 = drawEmote(emote, gameState.judge2.centerX - emoteOffset);
+        gameState.emote2 = drawEmote(emote, gameState.judge1.centerX - emoteOffset);
+        gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
+        break;
+      }
 }
 
 function drawEmote(emoteToDraw, xPosition){
