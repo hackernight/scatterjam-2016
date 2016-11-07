@@ -35,7 +35,7 @@ var dancing = function(game) {
         },
 
         create: function() {
-            music = game.add.audio('polka');
+            music = game.add.audio(getMusic());
             music.play();
 
             var style = {
@@ -127,6 +127,20 @@ var dancing = function(game) {
 
     };
 };
+
+function getMusic(){
+  var musicSelection = game.rnd.integerInRange(1, 4);
+  switch(musicSelection) {
+    case 1:
+    return "polka";
+    case 2:
+    return "polka2";
+    case 3:
+    return "polka3";
+    case 4:
+    return "polka4";
+  }
+}
 
 function killEmotes(){
   if (!!gameState.emote1){

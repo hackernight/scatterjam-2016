@@ -12,6 +12,26 @@ var lineIndex = 0;
 // "Meanwhile in Bavaria" Kevin MacLeod (incompetech.com)
 // Licensed under Creative Commons: By Attribution 3.0 License
 // http://creativecommons.org/licenses/by/3.0/
+//
+// "DarxieLand" Kevin MacLeod (incompetech.com)
+// Licensed under Creative Commons: By Attribution 3.0 License
+// http://creativecommons.org/licenses/by/3.0/
+//
+// "Blue Ska" Kevin MacLeod (incompetech.com)
+// Licensed under Creative Commons: By Attribution 3.0 License
+// http://creativecommons.org/licenses/by/3.0/
+//
+// "Comin Round the Mountain" Kevin MacLeod (incompetech.com)
+// Licensed under Creative Commons: By Attribution 3.0 License
+// http://creativecommons.org/licenses/by/3.0/
+//
+// "Sunflower Dance Party" Kevin MacLeod (incompetech.com)
+// Licensed under Creative Commons: By Attribution 3.0 License
+// http://creativecommons.org/licenses/by/3.0/
+//
+// "Upbeat Forever" Kevin MacLeod (incompetech.com)
+// Licensed under Creative Commons: By Attribution 3.0 License
+// http://creativecommons.org/licenses/by/3.0/
 
 var wordDelay = 120;
 var lineDelay = 400;
@@ -77,6 +97,9 @@ var startMenu = function(game) {
             game.load.image('stamp', 'assets/intro/hammerSickle.png');
 
             game.load.audio('polka', 'assets/audio/BavariaShort.mp3');
+            game.load.audio('polka2', 'assets/audio/BlueSkaShort.mp3');
+            game.load.audio('polka3', 'assets/audio/DarxieLandShort.mp3');
+            game.load.audio('polka4', 'assets/audio/SunflowerDancePartyShort.mp3');
             game.load.audio('dark', 'assets/audio/GloomShort.mp3');
             game.load.audio('boo', 'assets/audio/BooShort.mp3');
             game.load.audio('cheer', 'assets/audio/CheerShort.mp3');

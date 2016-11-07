@@ -28,7 +28,7 @@ var feedback = function(game) {
                 fbBad.x = 200;
             }
             //game.time.events.add(Phaser.Timer.SECOND * 4, endGame, this);
-            var startButton = this.centeredText("Try again?", 500);
+            var startButton = this.centeredText("Next Round?", 500);
 
             startButton.inputEnabled = true;
             startButton.events.onInputDown.add(
