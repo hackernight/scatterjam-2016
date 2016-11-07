@@ -13,11 +13,14 @@ var createDance = function() {
         }
     };
 
-    function getRandomMove(){
+    function getMove(moveID){
 
-        var randomizedNumber = (game.rnd.integerInRange(1, 5));
+        if (moveID ===0) {
+          //if they pass in 0, return a random move
+          moveID= (game.rnd.integerInRange(1, 5));
+        }
 
-            switch(randomizedNumber) {
+            switch(moveID) {
               case 1:
               return {
                   name: "Jazz Hands",
@@ -87,7 +90,7 @@ var createDance = function() {
 
     }
 
-    var danceMoves = [restingState, getRandomMove(), getRandomMove(), getRandomMove(), getRandomMove(), getRandomMove(), restingState, ];
+    var danceMoves = [restingState, getMove(0), getMove(0), getMove(0), getMove(0), getMove(0), restingState, ];
     //expansion ideas:
     //the robot
     //ballerina pirouette
