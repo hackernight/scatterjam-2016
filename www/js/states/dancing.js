@@ -19,7 +19,9 @@ var gameState = {
     emote1: null,
     emote2: null,
     emote3: null,
-    currentEmotedDanceIndex: null
+    currentEmotedDanceIndex: null,
+    failRounds: null,
+    successRounds: null
 };
 
 var rightKey;
@@ -48,7 +50,6 @@ var dancing = function(game) {
 
             drawBackground();
             drawJudges();
-
 
             gameState.emitter = game.add.emitter(game.world.centerX, 200, 250);
             gameState.emitter.makeParticles('particle-star');
