@@ -17,7 +17,7 @@ var createDance = function() {
 
         if (moveID ===0) {
           //if they pass in 0, return a random move
-          moveID= (game.rnd.integerInRange(1, 5));
+          moveID= (game.rnd.integerInRange(1, 10));
         }
 
             switch(moveID) {
@@ -25,7 +25,7 @@ var createDance = function() {
               return {
                   name: "Jazz Hands",
                   score: function() {
-                      return 3;
+                      return 1;
                   },
                   pose: {
                       leftArm: 150,
@@ -57,7 +57,7 @@ var createDance = function() {
                       leftArm: 135,
                       rightArm: -135,
                       leftLeg: 45,
-                      rightLeg: -45,
+                      rightLeg: -10,
                   }
               };
               case 4:
@@ -75,15 +75,80 @@ var createDance = function() {
               };
               case 5:
               return {
-                  name: "Big Finish",
+                  name: "YMCA",
                   score: function() {
                       return 2;
                   },
                   pose: {
                       leftArm: 135,
                       rightArm: -135,
-                      leftLeg: 0,
+                      leftLeg: -10,
+                      rightLeg: 10,
+                  }
+              };
+              case 6:
+              return {
+                  name: "En Pointe",
+                  score: function() {
+                      return 2;
+                  },
+                  pose: {
+                      leftArm: 170,
+                      rightArm: -175,
+                      leftLeg: 160,
                       rightLeg: 0,
+                  }
+              };
+              case 7:
+              return {
+                  name: "Flying Leap",
+                  score: function() {
+                      return -1;
+                  },
+                  pose: {
+                      leftArm: 90,
+                      rightArm: 40,
+                      leftLeg: 70,
+                      rightLeg: -50,
+                  }
+              };
+              case 8:
+              return {
+                  name: "Traffic Controller",
+                  score: function() {
+                      return -3;
+                  },
+                  pose: {
+                      leftArm: -185,
+                      rightArm: -135,
+                      leftLeg: -10,
+                      rightLeg: 10,
+                  }
+              };
+              case 9:
+              return {
+                  name: "Wax On",
+                  score: function() {
+                      return -3;
+                  },
+                  pose: {
+                      leftArm: -185,
+                      rightArm: -185,
+                      leftLeg: -20,
+                      rightLeg: 0,
+                  }
+              };
+              case 10:
+              return {
+                  name: "Oh No The Papparazzi",
+                  score: function() {
+                      return -3;
+                  },
+                  pose: {
+                      leftArm: -90,
+                      rightArm: 135,
+                      leftLeg: 0,
+                      rightLeg: 10,
                   }
               };
               }
