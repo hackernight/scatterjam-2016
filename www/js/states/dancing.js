@@ -66,7 +66,7 @@ var dancing = function(game) {
             game.add.text(160, 520, "0", style);
             game.add.text(610, 520, "10", style);
 
-            gameState.votedScore = (gameState.minScore);
+            gameState.votedScore = (gameState.maxScore/2);
             gameState.voteMoveWidth = gameState.voteBar.width / gameState.maxScore;
 
             repositionScoreBar();
@@ -88,6 +88,7 @@ var dancing = function(game) {
             });
             gameState.currentDance = createDance();
             gameState.currentDanceIndex = 0;
+            gameState.currentEmotedDanceIndex = -1;
 
             this.danceLabel = game.add.text(game.world.centerX, 460, "Dancing!", style);
             this.danceLabel.anchor.setTo(0.5, 0);
@@ -315,9 +316,15 @@ function repositionScoreBar() {
 }
 
 function scoreDance() {
-    gameState.objectiveScore = 0;
+    gameState.objectiveScore = (gameState.maxScore/2);
     for (var i in gameState.currentDance) {
         gameState.objectiveScore = gameState.objectiveScore + gameState.currentDance[i].score();
+    }
+    if (gameState.objectiveScore < gameState.minScore) {
+      gameState.objectiveScore = gameState.minScore;
+    }
+    if (gameState.objectiveScore > gameState.maxScore){
+      gameState.objectiveScore = gameState.maxScore;
     }
 }
 
