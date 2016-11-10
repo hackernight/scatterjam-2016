@@ -1,27 +1,27 @@
 var feedback = function(game) {
     return {
         create: function() {
-          if (!!!gameState.failRounds){
-            gameState.failRounds = 0;
-          }
-            if (!!!gameState.successRounds){
-              gameState.successRounds = 0;
+            if (!!!gameState.failRounds) {
+                gameState.failRounds = 0;
+            }
+            if (!!!gameState.successRounds) {
+                gameState.successRounds = 0;
             }
 
             //console.log("Create called in ", game.state.current);
             if (gameState.votedScore == gameState.objectiveScore ||
-                gameState.votedScore == gameState.objectiveScore+1 ||
-                gameState.votedScore == gameState.objectiveScore-1) {
+                gameState.votedScore == gameState.objectiveScore + 1 ||
+                gameState.votedScore == gameState.objectiveScore - 1) {
                 gameState.successRounds++;
                 music.stop();
                 music = game.add.audio('cheer');
                 music.play();
 
                 audience = game.add.sprite(0, 0, "audience");
-                audience.scale.setTo(3,3);
+                audience.scale.setTo(3, 3);
 
                 fbGood = game.add.sprite(0, 0, 'feedbackResultGood');
-                fbGood.scale.setTo(3,3);
+                fbGood.scale.setTo(3, 3);
                 fbGood.x = 200;
             } else {
                 gameState.failRounds++;
@@ -30,10 +30,10 @@ var feedback = function(game) {
                 music.play();
 
                 audience = game.add.sprite(0, 0, "audience");
-                audience.scale.setTo(3,3);
+                audience.scale.setTo(3, 3);
 
                 fbBad = game.add.sprite(0, 0, 'feedbackResultBad');
-                fbBad.scale.setTo(3,3);
+                fbBad.scale.setTo(3, 3);
                 fbBad.x = 200;
             }
             var style = {
@@ -54,15 +54,16 @@ var feedback = function(game) {
             startButton.inputEnabled = true;
             startButton.events.onInputDown.add(
                 function() {
-                  music.stop();
-                  game.state.start("dancing");
+                    music.stop();
+                    game.state.start("dancing");
                 });
 
-        },        centeredText: function(ctext, y) {
-                    ctext = game.add.text(game.world.centerX-25, y, ctext);
-                    ctext.anchor.setTo(0.5, 0.5);
-                    return ctext;
-                },
+        },
+        centeredText: function(ctext, y) {
+            ctext = game.add.text(game.world.centerX - 25, y, ctext);
+            ctext.anchor.setTo(0.5, 0.5);
+            return ctext;
+        },
 
         update: function() {
 

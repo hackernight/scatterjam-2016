@@ -120,14 +120,14 @@ var startMenu = function(game) {
                 startButton.inputEnabled = true;
                 startButton.events.onInputDown.add(
                     function() {
-                      game.stage.backgroundColor = "black";
-                      var style = {
-                          font: "32px Arial",
-                          fill: "black",
-                          wordWrap: false,
-                          //align: "center",
-                          //backgroundColor: "black"
-                      };
+                        game.stage.backgroundColor = "black";
+                        var style = {
+                            font: "32px Arial",
+                            fill: "black",
+                            wordWrap: false,
+                            //align: "center",
+                            //backgroundColor: "black"
+                        };
                         bg = game.add.sprite(0, 0, "storyBackground");
                         backstory = game.add.text(90, 64, '', style);
                         startButton.destroy();
@@ -154,12 +154,11 @@ function create() {
     rJudges.enableBody = true;
     rJudges.physicsBodyType = Phaser.Physics.ARCADE;
 
-    for (var i = 0; i < 10; i++)
-    {
-        var headAss = rJudges.create(200 + i * 48,-50, 'stamp');
+    for (var i = 0; i < 10; i++) {
+        var headAss = rJudges.create(200 + i * 48, -50, 'stamp');
 
         //This allows your sprite to collide with the world bounds like they were rigid objects
-        headAss.body.collideWorldBounds=true;
+        headAss.body.collideWorldBounds = true;
         headAss.body.gravity.x = game.rnd.integerInRange(-50, 50);
         headAss.body.gravity.y = 100 + Math.random() * 100;
         headAss.body.bounce.setTo(0.9, 0.9);
@@ -169,26 +168,25 @@ function create() {
 
 function displayBackstory() {
 
-  music = game.add.audio('dark');
-  music.play();
-  music.volume += 50.0;
+    music = game.add.audio('dark');
+    music.play();
+    music.volume += 50.0;
 
-  nextLine();
+    nextLine();
 
 }
 
 function nextLine() {
 
-    if (lineIndex === content.length)
-    {
+    if (lineIndex === content.length) {
         //  We're finished
-        stamp = game.add.sprite(0,0,"stamp");
+        stamp = game.add.sprite(0, 0, "stamp");
         stamp.x = 625;
         stamp.y = 500;
 
         game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
-        music.stop();
-        game.state.start('dancing');
+            music.stop();
+            game.state.start('dancing');
         }, this);
         return;
     }
@@ -217,8 +215,7 @@ function nextWord() {
     wordIndex++;
 
     //  Last word?
-    if (wordIndex === line.length)
-    {
+    if (wordIndex === line.length) {
         //  Add a carriage return
         backstory.text = backstory.text.concat("\n");
 

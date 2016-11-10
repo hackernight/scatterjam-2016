@@ -32,7 +32,7 @@ var dancing = function(game) {
     return {
         preload: function() {
 
-              game.stage.backgroundColor = "#aaaaaa";
+            game.stage.backgroundColor = "#aaaaaa";
 
         },
 
@@ -55,7 +55,7 @@ var dancing = function(game) {
             gameState.emitter.makeParticles('particle-star');
             gameState.emitter.minParticleSpeed.setTo(-300, -300);
             gameState.emitter.maxParticleSpeed.setTo(300, 300);
-            gameState.emitter.setAlpha(1, 0, 4000, Phaser.Easing.Exponential.Out );
+            gameState.emitter.setAlpha(1, 0, 4000, Phaser.Easing.Exponential.Out);
 
             gameState.dancer = constructDancer();
 
@@ -67,7 +67,7 @@ var dancing = function(game) {
             game.add.text(160, 520, "0", style);
             game.add.text(610, 520, "10", style);
 
-            gameState.votedScore = (gameState.maxScore/2);
+            gameState.votedScore = (gameState.maxScore / 2);
             gameState.voteMoveWidth = gameState.voteBar.width / gameState.maxScore;
 
             repositionScoreBar();
@@ -94,7 +94,7 @@ var dancing = function(game) {
             this.danceLabel = game.add.text(game.world.centerX, 460, "Dancing!", style);
             this.danceLabel.anchor.setTo(0.5, 0);
             game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
-              killEmotes();
+                killEmotes();
                 gameState.currentDanceIndex++;
                 if (gameState.currentDanceIndex > gameState.currentDance.length - 1) {
                     killEmotes();
@@ -106,24 +106,24 @@ var dancing = function(game) {
                     x: ('+160')
                 }, 1000, pickRandomTween(), true);
                 moveTween.onComplete.add(function() {
-                  if (gameState.currentDance[gameState.currentDanceIndex - 1].score() > 1) {
-                    gameState.emitter.x = gameState.currentDancer.x - 20;
-                    gameState.emitter.explode(4000, 10);
-                  }
+                    if (gameState.currentDance[gameState.currentDanceIndex - 1].score() > 1) {
+                        gameState.emitter.x = gameState.currentDancer.x - 20;
+                        gameState.emitter.explode(4000, 10);
+                    }
                 });
 
             }, this);
 
             var emoteDuration = Phaser.Timer.SECOND * 1;
-             if (gameState.successRounds> 2){
-               emoteDuration = 500;
-             }
-             if (gameState.successRounds> 4){
-              emoteDuration = 250;
+            if (gameState.successRounds > 2) {
+                emoteDuration = 500;
+            }
+            if (gameState.successRounds > 4) {
+                emoteDuration = 250;
             }
             game.time.events.loop(emoteDuration, function() {
-                    emote();
-                        }, this);
+                emote();
+            }, this);
             scoreDance();
         },
 
@@ -137,118 +137,119 @@ var dancing = function(game) {
     };
 };
 
-function getMusic(){
-  var musicSelection = game.rnd.integerInRange(1, 4);
-  switch(musicSelection) {
-    case 1:
-    return "polka";
-    case 2:
-    return "polka2";
-    case 3:
-    return "polka3";
-    case 4:
-    return "polka4";
-  }
+function getMusic() {
+    var musicSelection = game.rnd.integerInRange(1, 4);
+    switch (musicSelection) {
+        case 1:
+            return "polka";
+        case 2:
+            return "polka2";
+        case 3:
+            return "polka3";
+        case 4:
+            return "polka4";
+    }
 }
 
-function killEmotes(){
-  if (!!gameState.emote1){
-    gameState.emote1.kill();
-    gameState.emote2.kill();
-    gameState.emote3.kill();
-  }
+function killEmotes() {
+    if (!!gameState.emote1) {
+        gameState.emote1.kill();
+        gameState.emote2.kill();
+        gameState.emote3.kill();
+    }
 
 
 }
 
-function emote(){
-  if (!! gameState.currentDanceIndex && gameState.currentDanceIndex <= gameState.currentDance.length - 1) {
-    killEmotes();
-    var emoteOffset = 45;
+function emote() {
+    if (!!gameState.currentDanceIndex && gameState.currentDanceIndex <= gameState.currentDance.length - 1) {
+        killEmotes();
+        var emoteOffset = 45;
 
-    if (!gameState.currentEmotedDanceIndex || gameState.currentEmotedDanceIndex < gameState.currentDanceIndex) {
-    gameState.currentEmotedDanceIndex = gameState.currentDanceIndex;
-    switch(gameState.currentDance[gameState.currentDanceIndex].score()) {
-      case 3:
-        gameState.emote1 = drawEmote('happyEmote', gameState.judge1.centerX - emoteOffset);
-        gameState.emote2 = drawEmote('happyEmote', gameState.judge2.centerX - emoteOffset);
-        gameState.emote3 = drawEmote('happyEmote', gameState.judge3.centerX - emoteOffset);
-        break;
-      case 2:
-      twoRandomJudgesEmote('happyEmote', emoteOffset);
-      break;
-      case 1:
-      oneRandomJudgeEmotes('happyEmote', emoteOffset);
-      break;
-      // case 0:
-      // gameState.emote1 = drawEmote('neutralEmote', gameState.judge1.centerX - emoteOffset);
-      // gameState.emote2 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
-      // gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
-      //   break;
-      case -1:
-      oneRandomJudgeEmotes('madEmote', emoteOffset);
-        break;
-      case -2:
-      twoRandomJudgesEmote('madEmote', emoteOffset);
-        break;
-      case -3:
-      gameState.emote1 = drawEmote('madEmote', gameState.judge1.centerX - emoteOffset);
-      gameState.emote2 = drawEmote('madEmote', gameState.judge2.centerX - emoteOffset);
-      gameState.emote3 = drawEmote('madEmote', gameState.judge3.centerX - emoteOffset);
-        break;
-}
-}
+        if (!gameState.currentEmotedDanceIndex || gameState.currentEmotedDanceIndex < gameState.currentDanceIndex) {
+            gameState.currentEmotedDanceIndex = gameState.currentDanceIndex;
+            switch (gameState.currentDance[gameState.currentDanceIndex].score()) {
+                case 3:
+                    gameState.emote1 = drawEmote('happyEmote', gameState.judge1.centerX - emoteOffset);
+                    gameState.emote2 = drawEmote('happyEmote', gameState.judge2.centerX - emoteOffset);
+                    gameState.emote3 = drawEmote('happyEmote', gameState.judge3.centerX - emoteOffset);
+                    break;
+                case 2:
+                    twoRandomJudgesEmote('happyEmote', emoteOffset);
+                    break;
+                case 1:
+                    oneRandomJudgeEmotes('happyEmote', emoteOffset);
+                    break;
+                    // case 0:
+                    // gameState.emote1 = drawEmote('neutralEmote', gameState.judge1.centerX - emoteOffset);
+                    // gameState.emote2 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
+                    // gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
+                    //   break;
+                case -1:
+                    oneRandomJudgeEmotes('madEmote', emoteOffset);
+                    break;
+                case -2:
+                    twoRandomJudgesEmote('madEmote', emoteOffset);
+                    break;
+                case -3:
+                    gameState.emote1 = drawEmote('madEmote', gameState.judge1.centerX - emoteOffset);
+                    gameState.emote2 = drawEmote('madEmote', gameState.judge2.centerX - emoteOffset);
+                    gameState.emote3 = drawEmote('madEmote', gameState.judge3.centerX - emoteOffset);
+                    break;
+            }
+        }
 
-}
+    }
 }
 
 function oneRandomJudgeEmotes(emote, emoteOffset) {
-  var judgeToEmote = (game.rnd.integerInRange(1, 3));
-      switch(judgeToEmote) {
+    var judgeToEmote = (game.rnd.integerInRange(1, 3));
+    switch (judgeToEmote) {
         case 1:
-        gameState.emote1 = drawEmote(emote, gameState.judge1.centerX - emoteOffset);
-        gameState.emote2 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
-        gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
-        break;
+            gameState.emote1 = drawEmote(emote, gameState.judge1.centerX - emoteOffset);
+            gameState.emote2 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
+            gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
+            break;
         case 2:
-        gameState.emote1 = drawEmote(emote, gameState.judge2.centerX - emoteOffset);
-        gameState.emote2 = drawEmote('neutralEmote', gameState.judge1.centerX - emoteOffset);
-        gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
-        break;
+            gameState.emote1 = drawEmote(emote, gameState.judge2.centerX - emoteOffset);
+            gameState.emote2 = drawEmote('neutralEmote', gameState.judge1.centerX - emoteOffset);
+            gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
+            break;
         case 3:
-        gameState.emote1 = drawEmote(emote, gameState.judge3.centerX - emoteOffset);
-        gameState.emote2 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
-        gameState.emote3 = drawEmote('neutralEmote', gameState.judge1.centerX - emoteOffset);
-        break;
-      }
+            gameState.emote1 = drawEmote(emote, gameState.judge3.centerX - emoteOffset);
+            gameState.emote2 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
+            gameState.emote3 = drawEmote('neutralEmote', gameState.judge1.centerX - emoteOffset);
+            break;
+    }
 }
 
 function twoRandomJudgesEmote(emote, emoteOffset) {
-  var judgeToNotEmote = (game.rnd.integerInRange(1, 3));
-      switch(judgeToNotEmote) {
+    var judgeToNotEmote = (game.rnd.integerInRange(1, 3));
+    switch (judgeToNotEmote) {
         case 1:
-        gameState.emote1 = drawEmote(emote, gameState.judge2.centerX - emoteOffset);
-        gameState.emote2 = drawEmote(emote, gameState.judge3.centerX - emoteOffset);
-        gameState.emote3 = drawEmote('neutralEmote', gameState.judge1.centerX - emoteOffset);
-        break;
+            gameState.emote1 = drawEmote(emote, gameState.judge2.centerX - emoteOffset);
+            gameState.emote2 = drawEmote(emote, gameState.judge3.centerX - emoteOffset);
+            gameState.emote3 = drawEmote('neutralEmote', gameState.judge1.centerX - emoteOffset);
+            break;
         case 2:
-        gameState.emote1 = drawEmote(emote, gameState.judge1.centerX - emoteOffset);
-        gameState.emote2 = drawEmote(emote, gameState.judge3.centerX - emoteOffset);
-        gameState.emote3 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
-        break;
+            gameState.emote1 = drawEmote(emote, gameState.judge1.centerX - emoteOffset);
+            gameState.emote2 = drawEmote(emote, gameState.judge3.centerX - emoteOffset);
+            gameState.emote3 = drawEmote('neutralEmote', gameState.judge2.centerX - emoteOffset);
+            break;
         case 3:
-        gameState.emote1 = drawEmote(emote, gameState.judge2.centerX - emoteOffset);
-        gameState.emote2 = drawEmote(emote, gameState.judge1.centerX - emoteOffset);
-        gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
-        break;
-      }
+            gameState.emote1 = drawEmote(emote, gameState.judge2.centerX - emoteOffset);
+            gameState.emote2 = drawEmote(emote, gameState.judge1.centerX - emoteOffset);
+            gameState.emote3 = drawEmote('neutralEmote', gameState.judge3.centerX - emoteOffset);
+            break;
+    }
 }
 
-function drawEmote(emoteToDraw, xPosition){
+function drawEmote(emoteToDraw, xPosition) {
     newEmote = game.add.sprite(xPosition, 0, emoteToDraw);
     newEmote.scale.setTo(0.5, 0.5);
     return newEmote;
 }
+
 function pickRandomTween() {
     var easingFunctions = [Phaser.Easing.Exponential.Out, Phaser.Easing.Exponential.In, Phaser.Easing.Cubic.Out, Phaser.Easing.Cubic.In, Phaser.Easing.Circular.Out, Phaser.Easing.Quartic.Out];
     var i = (Math.random() * 100) % easingFunctions.length;
@@ -339,15 +340,15 @@ function repositionScoreBar() {
 }
 
 function scoreDance() {
-    gameState.objectiveScore = (gameState.maxScore/2);
+    gameState.objectiveScore = (gameState.maxScore / 2);
     for (var i in gameState.currentDance) {
         gameState.objectiveScore = gameState.objectiveScore + gameState.currentDance[i].score();
     }
     if (gameState.objectiveScore < gameState.minScore) {
-      gameState.objectiveScore = gameState.minScore;
+        gameState.objectiveScore = gameState.minScore;
     }
-    if (gameState.objectiveScore > gameState.maxScore){
-      gameState.objectiveScore = gameState.maxScore;
+    if (gameState.objectiveScore > gameState.maxScore) {
+        gameState.objectiveScore = gameState.maxScore;
     }
 }
 
