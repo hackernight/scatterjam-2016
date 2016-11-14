@@ -1,5 +1,5 @@
 var judgeToDisplay;
-
+var judgesChosen = [];
 var judge_Result = function(game) {
     return {
         create: function() {
@@ -30,38 +30,32 @@ function displayJudge() {
       backgroundColor: "white"
   };
 
-    if (judgeToDisplay==1){
-      gameState.judge2.destroy();
-      gameState.judge2 = game.add.sprite(tmpXJudgePosition, 0, 'judge2Score');
-      tmpXJudgePosition = tmpXJudgePosition + gameState.judge2.width + tmpXJudgePadder;
-      text = game.add.text(gameState.judge2.centerX - 5, 30, addRandomness(gameState.objectiveScore/2, 4), style);
+  //This will be where we can set the judges for each level.
+  judgesChosen = [{'sprite':'judge2Score', 'stateName' : 'judge2'},
+                    {'sprite':'judge3Score' , 'stateName' : 'judge3'},
+                    {'sprite':'judge1Score', 'stateName' : 'judge1'}];
+
+  if (judgeToDisplay <= 3){
+      gameState[judgesChosen[judgeToDisplay-1].stateName].destroy();
+      gameState[judgesChosen[judgeToDisplay-1].stateName] = game.add.sprite(tmpXJudgePosition, 0, judgesChosen[judgeToDisplay-1].sprite);
+      tmpXJudgePosition = tmpXJudgePosition + gameState[judgesChosen[judgeToDisplay-1].stateName].width + tmpXJudgePadder;
+      text = game.add.text(gameState[judgesChosen[judgeToDisplay-1].stateName].centerX - 5, 30, addRandomness(gameState.objectiveScore/2, 4), style);
       text.anchor.setTo(0.5, 0.5);
   }
-  if (judgeToDisplay==2){
-      gameState.judge3.destroy();
-      gameState.judge3 = game.add.sprite(tmpXJudgePosition, 0, 'judge3Score');
-      tmpXJudgePosition = tmpXJudgePosition + gameState.judge3.width + tmpXJudgePadder;
-      text2 = game.add.text(gameState.judge3.centerX - 5, 30, addRandomness(gameState.objectiveScore/2, 5), style);
-      text2.anchor.setTo(0.5, 0.5);
-  }
-  if (judgeToDisplay==3){
-      gameState.judge1.destroy();
-      gameState.judge1 = game.add.sprite(tmpXJudgePosition, 0, 'judge1Score');
-      tmpXJudgePosition = tmpXJudgePosition + gameState.judge1.width + tmpXJudgePadder * 2;
-      text3 = game.add.text(gameState.judge1.centerX - 5, 30, addRandomness(gameState.objectiveScore/2, 3), style);
-      text3.anchor.setTo(0.5, 0.5);
-  }
+
   if (judgeToDisplay==4){
+      tmpXJudgePosition += tmpXJudgePadder;
       gameState.russianJudge.destroy();
       gameState.russianJudge = game.add.sprite(tmpXJudgePosition, 0, 'russianJudgeScore');
       text4 = game.add.text(gameState.russianJudge.centerX - 5, 30, gameState.votedScore/2, style);
       text4.anchor.setTo(0.5, 0.5);
       stamp = game.add.sprite(tmpXJudgePosition + (gameState.russianJudge.width / 2) - 40, 190, 'stamp');
-}
-if (judgeToDisplay==5){
-  game.time.events.add(Phaser.Timer.SECOND * 2, giveFeedback, this);
-}
-judgeToDisplay++;
+  }
+
+  if (judgeToDisplay==5){
+    game.time.events.add(Phaser.Timer.SECOND * 2, giveFeedback, this);
+  }
+  judgeToDisplay++;
 
 }
 
