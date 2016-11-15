@@ -1,18 +1,16 @@
-var introText = function(game) {
-    return {
-        create: function(game) {
-            game.stage.backgroundColor = "black";
-            var style = {
-                font: "32px Arial",
-                fill: "black",
-                wordWrap: false,
-                //align: "center",
-                //backgroundColor: "black"
-            };
-            bg = game.add.sprite(0, 0, "storyBackground");
-            backstory = game.add.text(90, 64, '', style);
-            displayBackstory();
-        }
+class IntroText extends Phaser.State {
+    create(game) {
+        game.stage.backgroundColor = "black";
+        var style = {
+            font: "32px Arial",
+            fill: "black",
+            wordWrap: false,
+            //align: "center",
+            //backgroundColor: "black"
+        };
+        bg = game.add.sprite(0, 0, "storyBackground");
+        backstory = game.add.text(90, 64, '', style);
+        displayBackstory();
     }
 };
 
@@ -99,5 +97,4 @@ function nextWord() {
 
 }
 
-
-game.state.add('introText', introText);
+export default IntroText;

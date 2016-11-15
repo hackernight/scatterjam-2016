@@ -1,23 +1,17 @@
 var judgeToDisplay;
 
-var judge_Result = function(game) {
-    return {
-        create: function() {
-            //console.log("Create called in ", game.state.current);
+class JudgeResult extends Phaser.State {
+    create() {
+        //console.log("Create called in ", game.state.current);
 
-            judgeToDisplay = 1;
-            tmpXJudgePosition = 0;
-            game.time.events.loop(Phaser.Timer.SECOND * 1, function() {
-                displayJudge();
-            });
-        },
-
-        update: function() {
-
-        }
-
-    };
+        judgeToDisplay = 1;
+        tmpXJudgePosition = 0;
+        game.time.events.loop(Phaser.Timer.SECOND * 1, function() {
+            displayJudge();
+        });
+    }
 };
+
 var tmpXJudgePadder = 30;
 var tmpXJudgePosition = 0;
 
@@ -88,5 +82,4 @@ function giveFeedback() {
     game.state.start("feedback");
 }
 
-
-game.state.add('judge_Result', judge_Result);
+export default JudgeResult;

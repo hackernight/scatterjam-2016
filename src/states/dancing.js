@@ -28,113 +28,110 @@ var rightKey;
 var leftKey;
 var music;
 
-var dancing = function(game) {
-    return {
-        preload: function() {
+class Dancing extends Phaser.State {
+    preload() {
 
-            game.stage.backgroundColor = "#aaaaaa";
+        game.stage.backgroundColor = "#aaaaaa";
 
-        },
+    }
 
-        create: function() {
-            music = game.add.audio(getMusic());
-            music.play();
+    create() {
+        music = game.add.audio(getMusic());
+        music.play();
 
-            var style = {
-                font: "32px Arial",
-                fill: "#ffffff",
-                wordWrap: false,
-                align: "center",
-                strokeThickness: 5
-            };
+        var style = {
+            font: "32px Arial",
+            fill: "#ffffff",
+            wordWrap: false,
+            align: "center",
+            strokeThickness: 5
+        };
 
-            drawBackground();
-            drawJudges();
+        drawBackground();
+        drawJudges();
 
-            gameState.emitter = game.add.emitter(game.world.centerX, 200, 250);
-            gameState.emitter.makeParticles('particle-star');
-            gameState.emitter.minParticleSpeed.setTo(-300, -300);
-            gameState.emitter.maxParticleSpeed.setTo(300, 300);
-            gameState.emitter.setAlpha(1, 0, 4000, Phaser.Easing.Exponential.Out);
+        gameState.emitter = game.add.emitter(game.world.centerX, 200, 250);
+        gameState.emitter.makeParticles('particle-star');
+        gameState.emitter.minParticleSpeed.setTo(-300, -300);
+        gameState.emitter.maxParticleSpeed.setTo(300, 300);
+        gameState.emitter.setAlpha(1, 0, 4000, Phaser.Easing.Exponential.Out);
 
-            gameState.dancer = constructDancer();
+        gameState.dancer = constructDancer();
 
-            //draw the score bar
-            gameState.voteBar = game.add.sprite(200, 500, 'voteScoreBar');
-            gameState.voteBar.scale.setTo(0.5, 0.75);
-            gameState.scoreArrow = game.add.sprite(200, 505, 'meterArrow');
-            gameState.scoreArrow.scale.setTo(0.25, 0.36);
-            game.add.text(160, 520, "0", style);
-            game.add.text(610, 520, "10", style);
+        //draw the score bar
+        gameState.voteBar = game.add.sprite(200, 500, 'voteScoreBar');
+        gameState.voteBar.scale.setTo(0.5, 0.75);
+        gameState.scoreArrow = game.add.sprite(200, 505, 'meterArrow');
+        gameState.scoreArrow.scale.setTo(0.25, 0.36);
+        game.add.text(160, 520, "0", style);
+        game.add.text(610, 520, "10", style);
 
-            gameState.votedScore = (gameState.maxScore / 2);
-            gameState.voteMoveWidth = gameState.voteBar.width / gameState.maxScore;
+        gameState.votedScore = (gameState.maxScore / 2);
+        gameState.voteMoveWidth = gameState.voteBar.width / gameState.maxScore;
 
-            repositionScoreBar();
+        repositionScoreBar();
 
-            rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
-            rightKey.onDown.add(function() {
-                if (gameState.votedScore < gameState.maxScore) {
-                    gameState.votedScore++;
-                    repositionScoreBar();
-                }
+        rightKey = game.input.keyboard.addKey(Phaser.Keyboard.RIGHT);
+        rightKey.onDown.add(function() {
+            if (gameState.votedScore < gameState.maxScore) {
+                gameState.votedScore++;
+                repositionScoreBar();
+            }
 
-            });
-            leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
-            leftKey.onDown.add(function() {
-                if (gameState.votedScore > gameState.minScore) {
-                    gameState.votedScore--;
-                    repositionScoreBar();
-                }
-            });
-            gameState.currentDance = createDance();
-            gameState.currentDanceIndex = 0;
-            gameState.currentEmotedDanceIndex = -1;
+        });
+        leftKey = game.input.keyboard.addKey(Phaser.Keyboard.LEFT);
+        leftKey.onDown.add(function() {
+            if (gameState.votedScore > gameState.minScore) {
+                gameState.votedScore--;
+                repositionScoreBar();
+            }
+        });
+        gameState.currentDance = createDance();
+        gameState.currentDanceIndex = 0;
+        gameState.currentEmotedDanceIndex = -1;
 
-            this.danceLabel = game.add.text(game.world.centerX, 460, "Dancing!", style);
-            this.danceLabel.anchor.setTo(0.5, 0);
-            game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
+        this.danceLabel = game.add.text(game.world.centerX, 460, "Dancing!", style);
+        this.danceLabel.anchor.setTo(0.5, 0);
+        game.time.events.loop(Phaser.Timer.SECOND * 3, function() {
+            killEmotes();
+            gameState.currentDanceIndex++;
+            if (gameState.currentDanceIndex > gameState.currentDance.length - 1) {
                 killEmotes();
-                gameState.currentDanceIndex++;
-                if (gameState.currentDanceIndex > gameState.currentDance.length - 1) {
-                    killEmotes();
-                    game.state.start("judge_Result", 0);
+                game.state.start("judgeResult", 0);
+            }
+            //gameState.currentDancer.x = gameState.currentDancer.x + (800/5) - (gameState.currentDancer.width / 2);
+            //gameState.emote1.text = "";
+            var moveTween = game.add.tween(gameState.currentDancer).to({
+                x: ('+160')
+            }, 1000, pickRandomTween(), true);
+            moveTween.onComplete.add(function() {
+                if (gameState.currentDance[gameState.currentDanceIndex - 1].score() > 1) {
+                    gameState.emitter.x = gameState.currentDancer.x - 20;
+                    gameState.emitter.explode(4000, 10);
                 }
-                //gameState.currentDancer.x = gameState.currentDancer.x + (800/5) - (gameState.currentDancer.width / 2);
-                //gameState.emote1.text = "";
-                var moveTween = game.add.tween(gameState.currentDancer).to({
-                    x: ('+160')
-                }, 1000, pickRandomTween(), true);
-                moveTween.onComplete.add(function() {
-                    if (gameState.currentDance[gameState.currentDanceIndex - 1].score() > 1) {
-                        gameState.emitter.x = gameState.currentDancer.x - 20;
-                        gameState.emitter.explode(4000, 10);
-                    }
-                });
+            });
 
-            }, this);
+        }, this);
 
-            var emoteDuration = Phaser.Timer.SECOND * 1;
-            if (gameState.successRounds > 2) {
-                emoteDuration = 500;
-            }
-            if (gameState.successRounds > 4) {
-                emoteDuration = 250;
-            }
-            game.time.events.loop(emoteDuration, function() {
-                emote();
-            }, this);
-            scoreDance();
-        },
+        var emoteDuration = Phaser.Timer.SECOND * 1;
+        if (gameState.successRounds > 2) {
+            emoteDuration = 500;
+        }
+        if (gameState.successRounds > 4) {
+            emoteDuration = 250;
+        }
+        game.time.events.loop(emoteDuration, function() {
+            emote();
+        }, this);
+        scoreDance();
+    }
 
-        update: function() {
-            this.danceLabel.text = gameState.currentDance[gameState.currentDanceIndex].name;
+    update() {
+        this.danceLabel.text = gameState.currentDance[gameState.currentDanceIndex].name;
 
-            gameState.currentDance.text = gameState.currentDance.name;
-            pose();
-        },
-
-    };
+        gameState.currentDance.text = gameState.currentDance.name;
+        pose();
+    }
 };
 
 function getMusic() {
@@ -352,5 +349,4 @@ function scoreDance() {
     }
 }
 
-
-game.state.add('dancing', dancing);
+export default Dancing;
