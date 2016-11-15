@@ -1,17 +1,23 @@
 <head>
-    <script type="text/javascript" src="vendor/phaser.js"></script>
-    <!-- TODO have gulp figure out to include minified or pretty dependencies here -->
-
-    <script type="text/javascript" src="js/preload.js"></script>
-    <script type="text/javascript" src="js/states/startMenu.js"></script>
-    <script type="text/javascript" src="js/states/introText.js"></script>
-    <script type="text/javascript" src="js/states/dancing.js"></script>
-    <script type="text/javascript" src="js/states/feedback.js"></script>
-    <script type="text/javascript" src="js/states/judgeResult.js"></script>
-    <script type="text/javascript" src="js/dance.js"></script>
-    <script type="text/javascript" src="js/phaser-start.js"></script>
     <title>Russian Judge Redemption</title>
+    <!-- build:css main.min.css -->
+    <link rel="stylesheet" href="css/main.css">
+    <!-- /build -->
 </head>
 
 <body style="background-color:#333 !important; margin:0; padding:0">
+    <div id="russian-judge-redemption" class="game"></div>
+
+    <!-- build:remove -->
+    <script src="http://localhost:35729/livereload.js"></script>
+    <!-- /build -->
+
+    <!-- build:js phaser.min.js -->
+    <script src="node_modules/phaser/build/phaser.min.js"></script>
+    <!-- /build -->
+
+    <!-- build:js bundle.min.js -->
+    <script src="bundle.js"></script>
+    <!-- /build -->
+
 </body>

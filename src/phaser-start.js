@@ -1,1 +1,0 @@
-game.state.start('startMenu');
