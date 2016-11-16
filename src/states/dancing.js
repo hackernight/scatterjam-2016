@@ -1,4 +1,5 @@
 import Dance from '../dance';
+import StarEmitter from '../prefabs/starEmitter';
 
 let gameState = {
     votedScore: null,
@@ -49,11 +50,8 @@ class Dancing extends Phaser.State {
         this.drawBackground();
         this.drawJudges();
 
-        gameState.emitter = this.game.add.emitter(this.game.world.centerX, 200, 250);
-        gameState.emitter.makeParticles('particle-star');
-        gameState.emitter.minParticleSpeed.setTo(-300, -300);
-        gameState.emitter.maxParticleSpeed.setTo(300, 300);
-        gameState.emitter.setAlpha(1, 0, 4000, Phaser.Easing.Exponential.Out);
+        gameState.emitter = new StarEmitter(this.game, this.game.world.centerX, 200, 250);
+        this.game.add.existing(gameState.emitter);
 
         gameState.dancer = this.constructDancer();
 
