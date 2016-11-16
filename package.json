@@ -30,5 +30,8 @@
         "mkdirp": "^0.5.1",
         "uglify-js": "^2.6.2"
     },
+    "jshintConfig": {
+        "esversion": 6
+    },
     "license": "ISC"
 }

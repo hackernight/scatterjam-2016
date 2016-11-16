@@ -65,7 +65,7 @@ class IntroText extends Phaser.State {
         this.wordIndex = 0;
 
         //  Call the 'nextWord' function once for each word in the line (line.length)
-        this.game.time.events.repeat(this.wordDelay, line.length, this.nextWord, this);
+        this.game.time.events.repeat(this.wordDelay, this.line.length, this.nextWord, this);
 
         //  Advance to the next line
         this.lineIndex++;
@@ -74,21 +74,21 @@ class IntroText extends Phaser.State {
 
     nextWord() {
         //  Add the next word onto the text string, followed by a space
-        backstory.text = backstory.text.concat(this.line[this.wordIndex] + " ");
+        this.backstory.text = this.backstory.text.concat(this.line[this.wordIndex] + " ");
 
         //  Advance the word index to the next word in the line
         this.wordIndex++;
 
         //  Last word?
-        if (this.wordIndex === line.length) {
+        if (this.wordIndex === this.line.length) {
             //  Add a carriage return
-            backstory.text = backstory.text.concat("\n");
+            this.backstory.text = this.backstory.text.concat("\n");
 
             //  Get the next line after the lineDelay amount of ms has elapsed
             this.game.time.events.add(this.lineDelay, this.nextLine, this);
         }
 
     }
-};
+}
 
 export default IntroText;
