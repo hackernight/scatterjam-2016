@@ -1,6 +1,6 @@
 import Dance from '../dance';
 
-var gameState = {
+let gameState = {
     votedScore: null,
     emitter: null,
     objectiveScore: null,
@@ -26,9 +26,9 @@ var gameState = {
     successRounds: null
 };
 
-var rightKey;
-var leftKey;
-var music;
+let rightKey;
+let leftKey;
+let music;
 
 class Dancing extends Phaser.State {
     preload() {
@@ -39,7 +39,7 @@ class Dancing extends Phaser.State {
         music = this.game.add.audio(this.getMusic());
         music.play();
 
-        var style = {
+        let style = {
             font: "32px Arial",
             fill: "#ffffff",
             wordWrap: false,
@@ -101,7 +101,7 @@ class Dancing extends Phaser.State {
             }
             //gameState.currentDancer.x = gameState.currentDancer.x + (800/5) - (gameState.currentDancer.width / 2);
             //gameState.emote1.text = "";
-            var moveTween = this.game.add.tween(gameState.currentDancer).to({
+            let moveTween = this.game.add.tween(gameState.currentDancer).to({
                 x: ('+160')
             }, 1000, this.pickRandomTween(), true);
             moveTween.onComplete.add(() => {
@@ -113,7 +113,7 @@ class Dancing extends Phaser.State {
 
         }, this);
 
-        var emoteDuration = Phaser.Timer.SECOND * 1;
+        let emoteDuration = Phaser.Timer.SECOND * 1;
         if (gameState.successRounds > 2) {
             emoteDuration = 500;
         }
@@ -134,7 +134,7 @@ class Dancing extends Phaser.State {
     }
 
     getMusic() {
-        var musicSelection = this.game.rnd.integerInRange(1, 4);
+        let musicSelection = this.game.rnd.integerInRange(1, 4);
         switch (musicSelection) {
             case 1:
                 return "polka";
@@ -160,7 +160,7 @@ class Dancing extends Phaser.State {
     emote() {
         if (!!gameState.currentDanceIndex && gameState.currentDanceIndex <= gameState.currentDance.length - 1) {
             this.killEmotes();
-            var emoteOffset = 45;
+            let emoteOffset = 45;
 
             if (!gameState.currentEmotedDanceIndex || gameState.currentEmotedDanceIndex < gameState.currentDanceIndex) {
                 gameState.currentEmotedDanceIndex = gameState.currentDanceIndex;
@@ -199,7 +199,7 @@ class Dancing extends Phaser.State {
     }
 
     oneRandomJudgeEmotes(emote, emoteOffset) {
-        var judgeToEmote = (this.game.rnd.integerInRange(1, 3));
+        let judgeToEmote = (this.game.rnd.integerInRange(1, 3));
         switch (judgeToEmote) {
             case 1:
                 gameState.emote1 = this.drawEmote(emote, gameState.judge1.centerX - emoteOffset);
@@ -220,7 +220,7 @@ class Dancing extends Phaser.State {
     }
 
     twoRandomJudgesEmote(emote, emoteOffset) {
-        var judgeToNotEmote = (this.game.rnd.integerInRange(1, 3));
+        let judgeToNotEmote = (this.game.rnd.integerInRange(1, 3));
         switch (judgeToNotEmote) {
             case 1:
                 gameState.emote1 = this.drawEmote(emote, gameState.judge2.centerX - emoteOffset);
@@ -247,17 +247,17 @@ class Dancing extends Phaser.State {
     }
 
     pickRandomTween() {
-        var easingFunctions = [Phaser.Easing.Exponential.Out, Phaser.Easing.Exponential.In, Phaser.Easing.Cubic.Out, Phaser.Easing.Cubic.In, Phaser.Easing.Circular.Out, Phaser.Easing.Quartic.Out];
-        var i = (Math.random() * 100) % easingFunctions.length;
+        let easingFunctions = [Phaser.Easing.Exponential.Out, Phaser.Easing.Exponential.In, Phaser.Easing.Cubic.Out, Phaser.Easing.Cubic.In, Phaser.Easing.Circular.Out, Phaser.Easing.Quartic.Out];
+        let i = (Math.random() * 100) % easingFunctions.length;
         return easingFunctions[i];
     }
 
     pose() {
-        var currentDance = gameState.currentDance[gameState.currentDanceIndex];
+        let currentDance = gameState.currentDance[gameState.currentDanceIndex];
         if (!gameState.dancer || !currentDance) {
             return;
         }
-        var tweenSpeed = 0.1;
+        let tweenSpeed = 0.1;
         gameState.dancer.leftArm.angle += (currentDance.pose.leftArm - gameState.dancer.leftArm.angle) * tweenSpeed;
         gameState.dancer.leftHand.angle = 180 + gameState.dancer.leftArm.angle;
         gameState.dancer.rightArm.angle += (currentDance.pose.rightArm - gameState.dancer.rightArm.angle) * tweenSpeed;
@@ -270,7 +270,7 @@ class Dancing extends Phaser.State {
     }
 
     constructDancer() {
-        var dancer = {};
+        let dancer = {};
         gameState.currentDancer = this.game.add.group();
         dancer.wholeBody = gameState.currentDancer;
         dancer.torso = this.makeBodyPart('dancer-torso', 0, 0, gameState.currentDancer);
@@ -305,7 +305,7 @@ class Dancing extends Phaser.State {
     }
 
     makeBodyPart(spriteName, offsetX, offsetY, group) {
-        var sprite = this.game.add.sprite(-45 + offsetX, 200 + offsetY, spriteName);
+        let sprite = this.game.add.sprite(-45 + offsetX, 200 + offsetY, spriteName);
         sprite.anchor.setTo(0.5, 0.5);
         group.add(sprite);
         return sprite;
@@ -337,7 +337,7 @@ class Dancing extends Phaser.State {
 
     scoreDance() {
         gameState.objectiveScore = (gameState.maxScore / 2);
-        for (var i in gameState.currentDance) {
+        for (let i in gameState.currentDance) {
             gameState.objectiveScore = gameState.objectiveScore + gameState.currentDance[i].score();
         }
         if (gameState.objectiveScore < gameState.minScore) {

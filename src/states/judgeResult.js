@@ -1,4 +1,4 @@
-var judgeToDisplay;
+let judgeToDisplay;
 
 class JudgeResult extends Phaser.State {
     init(gameState) {
@@ -17,7 +17,7 @@ class JudgeResult extends Phaser.State {
     }
 
     displayJudge() {
-        var style = {
+        let style = {
             font: "32px Arial",
             //fill: "#ff0044",
             wordWrap: false,
@@ -62,7 +62,7 @@ class JudgeResult extends Phaser.State {
 
     addRandomness(baseScore, maxRandomness) {
 
-        var randomizedNumber = (this.game.rnd.integerInRange(0, maxRandomness) / 10);
+        let randomizedNumber = (this.game.rnd.integerInRange(0, maxRandomness) / 10);
 
         let positive = this.game.rnd.integerInRange(0, 1);
         if (positive === 0) {
@@ -84,8 +84,8 @@ class JudgeResult extends Phaser.State {
     }
 }
 
-var tmpXJudgePadder = 30;
-var tmpXJudgePosition = 0;
+let tmpXJudgePadder = 30;
+let tmpXJudgePosition = 0;
 
 
 

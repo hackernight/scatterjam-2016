@@ -39,7 +39,7 @@ class Feedback extends Phaser.State {
             fbBad.scale.setTo(3, 3);
             fbBad.x = 200;
         }
-        var style = {
+        let style = {
             font: "32px Arial",
             fill: "#ffffff",
             wordWrap: false,
@@ -52,7 +52,7 @@ class Feedback extends Phaser.State {
         this.game.add.text(500, 70, this.gameState.failRounds, style);
 
         //this.game.time.events.add(Phaser.Timer.SECOND * 4, endGame, this);
-        var startButton = this.centeredText("Next Round?", 500);
+        let startButton = this.centeredText("Next Round?", 500);
 
         startButton.inputEnabled = true;
         startButton.events.onInputDown.add(

@@ -89,7 +89,7 @@ class StartMenu extends Phaser.State {
             headAss.scale.setTo(6, 6);
 
             this.loadingText.destroy();
-            var startButton = this.centeredText("Start Judging", this.game.world.centerY);
+            let startButton = this.centeredText("Start Judging", this.game.world.centerY);
             this.createTitleFluff();
 
             startButton.inputEnabled = true;
@@ -110,8 +110,8 @@ class StartMenu extends Phaser.State {
         rJudges.enableBody = true;
         rJudges.physicsBodyType = Phaser.Physics.ARCADE;
 
-        for (var i = 0; i < 10; i++) {
-            var headAss = rJudges.create(200 + i * 48, -50, 'stamp');
+        for (let i = 0; i < 10; i++) {
+            let headAss = rJudges.create(200 + i * 48, -50, 'stamp');
 
             //This allows your sprite to collide with the world bounds like they were rigid objects
             headAss.body.collideWorldBounds = true;
@@ -121,6 +121,6 @@ class StartMenu extends Phaser.State {
         }
     }
 
-};
+}
 
 export default StartMenu;
