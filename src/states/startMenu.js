@@ -83,7 +83,7 @@ class StartMenu extends Phaser.State {
 
         this.game.load.onLoadComplete.add(function() {
             // TODO kill this so you have an actual start menu
-            this.game.state.start('dancing');
+            // this.game.state.start('dancing');
 
             let headAss = this.game.add.sprite(0, 0, 'headAss');
             headAss.scale.setTo(6, 6);

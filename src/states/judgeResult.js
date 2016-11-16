@@ -80,7 +80,7 @@ class JudgeResult extends Phaser.State {
     }
 
     giveFeedback() {
-        this.game.state.start("feedback");
+        this.game.state.start("feedback", true, false, this.gameState);
     }
 }
 
