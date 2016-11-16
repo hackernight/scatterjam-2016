@@ -1,9 +1,9 @@
 let judgeToDisplay;
 
 class JudgeResult extends Phaser.State {
-    init(gameState) {
-        console.log(gameState);
+    init(gameState, music) {
         this.gameState = gameState;
+        this.music = music;
 
     }
     create() {
@@ -81,6 +81,10 @@ class JudgeResult extends Phaser.State {
 
     giveFeedback() {
         this.game.state.start("feedback", true, false, this.gameState);
+    }
+
+    shutdown() {
+        this.music.stop();
     }
 }
 

@@ -15,8 +15,7 @@ class Feedback extends Phaser.State {
             this.gameState.votedScore == this.gameState.objectiveScore + 1 ||
             this.gameState.votedScore == this.gameState.objectiveScore - 1) {
             this.gameState.successRounds++;
-            // My suspicion is that you don't need this. I could be wrong. State should clean that up
-            // music.stop();
+
             this.music = this.game.add.audio('cheer');
             this.music.play();
 
@@ -28,7 +27,7 @@ class Feedback extends Phaser.State {
             fbGood.x = 200;
         } else {
             this.gameState.failRounds++;
-            // music.stop(); // See above long comment
+
             this.music = this.game.add.audio('boo');
             this.music.play();
 
@@ -55,8 +54,7 @@ class Feedback extends Phaser.State {
         let startButton = this.centeredText("Next Round?", 500);
 
         startButton.inputEnabled = true;
-        startButton.events.onInputDown.add(
-            () => {
+        startButton.events.onInputDown.add(() => {
                 this.music.stop();
                 this.game.state.start("dancing");
             });

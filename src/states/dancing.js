@@ -28,7 +28,6 @@ let gameState = {
 
 let rightKey;
 let leftKey;
-let music;
 
 class Dancing extends Phaser.State {
     preload() {
@@ -36,7 +35,7 @@ class Dancing extends Phaser.State {
     }
 
     create() {
-        music = this.game.add.audio(this.getMusic());
+        let music = this.game.add.audio(this.getMusic());
         music.play();
 
         let style = {
@@ -97,7 +96,7 @@ class Dancing extends Phaser.State {
             gameState.currentDanceIndex++;
             if (gameState.currentDanceIndex > gameState.currentDance.length - 1) {
                 this.killEmotes();
-                this.game.state.start("judgeResult", false, false, gameState);
+                this.game.state.start("judgeResult", false, false, gameState, music);
             }
             //gameState.currentDancer.x = gameState.currentDancer.x + (800/5) - (gameState.currentDancer.width / 2);
             //gameState.emote1.text = "";
