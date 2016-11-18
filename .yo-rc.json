@@ -1,0 +1,7 @@
+{
+  "generator-phaser": {
+    "projectName": "russian-judge-redemption",
+    "esVersion": 6,
+    "gameFolder": "game"
+  }
+}

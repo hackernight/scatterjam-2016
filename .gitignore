@@ -1,10 +1,4 @@
-# Don't commit cordova-built things
-platforms/
-
-# Don't commit third-party dependencies
-bower_components/
+.DS_Store
+*.db
+build/
 node_modules/
-www/js/vendor/
-
-# Don't commit the built product
-dist/

@@ -1,23 +1,25 @@
-var createDance = function() {
+class Dance {
+    constructor(game) {
+        this.game = game;
+        this.restingState = {
+            name: "",
+            score: function() {
+                return 0;
+            },
+            pose: {
+                leftArm: 0,
+                rightArm: 0,
+                leftLeg: 0,
+                rightLeg: 0,
+            }
+        };
+    }
 
-    var restingState = {
-        name: "",
-        score: function() {
-            return 0;
-        },
-        pose: {
-            leftArm: 0,
-            rightArm: 0,
-            leftLeg: 0,
-            rightLeg: 0,
-        }
-    };
-
-    function getMove(moveID) {
+    getMove(moveID) {
 
         if (moveID === 0) {
             //if they pass in 0, return a random move
-            moveID = (game.rnd.integerInRange(1, 10));
+            moveID = (this.game.rnd.integerInRange(1, 10));
         }
 
         switch (moveID) {
@@ -155,10 +157,12 @@ var createDance = function() {
 
     }
 
-    var danceMoves = [restingState, getMove(0), getMove(0), getMove(0), getMove(0), getMove(0), restingState, ];
     //expansion ideas:
     //the robot
     //ballerina pirouette
+    createDance() {
+        return [this.restingState, this.getMove(0), this.getMove(0), this.getMove(0), this.getMove(0), this.getMove(0), this.restingState, ];
+    }
+}
 
-    return danceMoves;
-};
+export default Dance;
